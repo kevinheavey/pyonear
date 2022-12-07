@@ -1,5 +1,5 @@
 ======
-Config
+config
 ======
 
 .. automodule:: pyonear.config

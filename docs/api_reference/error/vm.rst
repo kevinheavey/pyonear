@@ -1,6 +1,6 @@
-=========
-VM Errors
-=========
+==
+vm
+==
 
 .. automodule:: pyonear.error.vm
     :members:

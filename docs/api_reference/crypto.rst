@@ -1,6 +1,6 @@
-============
-Cryptography
-============
+======
+crypto
+======
 
 .. automodule:: pyonear.crypto
     :members:

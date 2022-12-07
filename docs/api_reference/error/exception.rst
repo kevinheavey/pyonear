@@ -1,6 +1,6 @@
-==========
-Exceptions
-==========
+=========
+exception
+=========
 
 .. automodule:: pyonear.error.exception
     :members:

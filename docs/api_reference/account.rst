@@ -1,5 +1,5 @@
 =======
-Account
+account
 =======
 
 .. automodule:: pyonear.account

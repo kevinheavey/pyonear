@@ -1,5 +1,5 @@
 ======
-Merkle
+merkle
 ======
 
 .. automodule:: pyonear.merkle

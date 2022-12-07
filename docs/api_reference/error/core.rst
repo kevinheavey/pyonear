@@ -1,6 +1,6 @@
-===========
-Core Errors
-===========
+====
+core
+====
 
 .. automodule:: pyonear.error.core
     :members:

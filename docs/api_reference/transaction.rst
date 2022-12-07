@@ -1,5 +1,5 @@
 ===========
-Transaction
+transaction
 ===========
 
 .. automodule:: pyonear.transaction

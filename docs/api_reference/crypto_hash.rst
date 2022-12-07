@@ -1,5 +1,5 @@
 ===========
-Crypto Hash
+crypto_hash
 ===========
 
 .. automodule:: pyonear.crypto_hash
