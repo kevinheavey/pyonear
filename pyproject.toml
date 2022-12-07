@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "pyonear"
+version = "0.0.1"
+description = "Python bindings for NEAR Rust primitives."
+authors = ["kevinheavey <notanemail@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+maturin = "0.14.3"
+black = "^22.3"
+wemake-python-styleguide = "^0.16.0"
+mypy = "^0.982"
+pytest = "^6.2.5"
+Sphinx = "^4.3.2"
+sphinx-rtd-theme = "^1.0.0"
+bumpversion = "^0.6.0"
+
+[build-system]
+requires = ["maturin>=0.13.2,<0.14"]
+build-backend = "maturin"
+
+
+[project]
+name = "pyonear"
+version = "0.1.0"
+description = "Python bindings for NEAR Rust primitives."
+authors = [ {name = "kevinheavey", email = "notanemail@gmail.com"} ]
+license = {file = "LICENSE"} # relative to the package/ directory
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.urls]
+homepage = "https://github.com/kevinheavey/pyonear"
+documentation = "https://kevinheavey.github.io/pyonear/"
+repository = "https://github.com/kevinheavey/pyonear"
+changelog = "https://github.com/kevinheavey/pyonear/blob/main/CHANGELOG.md"
+
+[tool.maturin]
+python-source = "python"
