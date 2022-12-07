@@ -3,6 +3,7 @@ from pyonear.config import ActionCosts, ExtCosts
 
 MAX_U64 = 18_446_744_073_709_551_615
 
+
 def test_no_panic_on_overflow() -> None:
     profile_data = ProfileData()
     profile_data.add_action_cost(ActionCosts.function_call, MAX_U64)

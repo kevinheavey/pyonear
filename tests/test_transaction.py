@@ -94,11 +94,11 @@ def test_outcome_to_hashes() -> None:
         executor_id=AccountId("alice"),
         metadata=ExecutionMetadataFieldless.V1,
     )
-    id = CryptoHash([42] * 32)
-    outcome_with_id = ExecutionOutcomeWithId(id, outcome)
-    assert [
-        id,
+    id_ = CryptoHash([42] * 32)
+    outcome_with_id = ExecutionOutcomeWithId(id_, outcome)
+    assert outcome_with_id.to_hashes() == [
+        id_,
         CryptoHash.from_str("5JQs5ekQqKudMmYejuccbtEu1bzhQPXa92Zm4HdV64dQ"),
         crypto_hash(b"123"),
         crypto_hash(b"321"),
-    ] == outcome_with_id.to_hashes()
+    ]

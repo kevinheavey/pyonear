@@ -14,8 +14,11 @@ __all__ = [
     "account_id",
     "account",
     "config",
-    "crypto_hash" "crypto",
-    "merkle" "transaction",
+    "crypto_hash",
+    "crypto",
+    "error",
+    "merkle",
+    "transaction",
 ]
 
 __version__: str = _version_untyped
