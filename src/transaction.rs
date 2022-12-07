@@ -140,6 +140,50 @@ impl Transaction {
         };
         self.0.clone().sign(&*dyn_signer).into()
     }
+
+    pub fn create_account(&mut self) -> Self {
+        self.0.clone().create_account().into()
+    }
+
+    pub fn deploy_contract(&mut self, code: Vec<u8>) -> Self {
+        self.0.clone().deploy_contract(code).into()
+    }
+
+    pub fn function_call(
+        &mut self,
+        method_name: String,
+        args: Vec<u8>,
+        gas: Gas,
+        deposit: Balance,
+    ) -> Self {
+        self.0
+            .clone()
+            .function_call(method_name, args, gas, deposit)
+            .into()
+    }
+
+    pub fn transfer(&mut self, deposit: Balance) -> Self {
+        self.0.clone().transfer(deposit).into()
+    }
+
+    pub fn stake(&mut self, stake: Balance, public_key: PublicKey) -> Self {
+        self.0.clone().stake(stake, public_key.into()).into()
+    }
+
+    pub fn add_key(&mut self, public_key: PublicKey, access_key: AccessKey) -> Self {
+        self.0
+            .clone()
+            .add_key(public_key.into(), access_key.into())
+            .into()
+    }
+
+    pub fn delete_key(&mut self, public_key: PublicKey) -> Self {
+        self.0.clone().delete_key(public_key.into()).into()
+    }
+
+    pub fn delete_account(&mut self, beneficiary_id: AccountId) -> Self {
+        self.0.clone().delete_account(beneficiary_id.into()).into()
+    }
 }
 impl_display!(Transaction);
 quick_struct_boilerplate_core!(Transaction);
