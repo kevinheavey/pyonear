@@ -19,5 +19,3 @@ Pre-requisites: Rust >= 1.65, Python >= 3.7, Poetry >= 1.1.14
 3. `maturin develop`
 4. `pytest`
 5. `make lint`
-
-### Install the virtual environment
