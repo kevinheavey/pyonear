@@ -90,34 +90,34 @@ impl Transaction {
         .into()
     }
 
-    /// An account on which behalf transaction is signed
+    /// AccountId: An account on which behalf transaction is signed
     #[getter]
     pub fn signer_id(&self) -> AccountId {
         self.0.signer_id.clone().into()
     }
-    /// A public key of the access key which was used to sign an account.
+    /// PublicKey: A public key of the access key which was used to sign an account.
     /// Access key holds permissions for calling certain kinds of actions.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
     }
-    /// Nonce is used to determine order of transaction in the pool.
+    /// int: Nonce is used to determine order of transaction in the pool.
     /// It increments for a combination of `signer_id` and `public_key`
     #[getter]
     pub fn nonce(&self) -> Nonce {
         self.0.nonce
     }
-    /// Receiver account for this transaction
+    /// AccountId: Receiver account for this transaction
     #[getter]
     pub fn receiver_id(&self) -> AccountId {
         self.0.receiver_id.clone().into()
     }
-    /// The hash of the block in the blockchain on top of which the given transaction is valid
+    /// CryptoHash: The hash of the block in the blockchain on top of which the given transaction is valid
     #[getter]
     pub fn block_hash(&self) -> CryptoHash {
         self.0.block_hash.into()
     }
-    /// A list of actions to be applied
+    /// list[Action]: A list of actions to be applied
     #[getter]
     pub fn actions(&self) -> Vec<Action> {
         self.0
@@ -295,7 +295,7 @@ impl DeployContractAction {
         DeployContractActionOriginal { code }.into()
     }
 
-    /// WebAssembly binary
+    /// list[int]: WebAssembly binary
     #[getter]
     pub fn code(&self) -> Vec<u8> {
         self.0.code.clone()
@@ -319,18 +319,22 @@ impl FunctionCallAction {
         .into()
     }
 
+    /// str: The name of the method to call
     #[getter]
     pub fn method_name(&self) -> String {
         self.0.method_name.clone()
     }
+    /// list[int]: Arguments to pass to method.
     #[getter]
     pub fn args(&self) -> Vec<u8> {
         self.0.args.clone()
     }
+    /// int: Max amount of gas that method call can use.
     #[getter]
     pub fn gas(&self) -> Gas {
         self.0.gas
     }
+    /// int: Amount of NEAR (in yoctoNEAR) to send together with the call.
     #[getter]
     pub fn deposit(&self) -> Balance {
         self.0.deposit
@@ -348,6 +352,7 @@ impl TransferAction {
         TransferActionOriginal { deposit }.into()
     }
 
+    /// int: The amount to transfer, in yoctoNEAR.
     #[getter]
     pub fn deposit(&self) -> Balance {
         self.0.deposit
@@ -373,12 +378,13 @@ impl StakeAction {
         .into()
     }
 
+    /// int: Amount of tokens to stake.
     #[getter]
     pub fn stake(&self) -> Balance {
         self.0.stake
     }
 
-    /// Validator key which will be used to sign transactions on behalf of singer_id
+    /// PublicKey: Validator key which will be used to sign transactions on behalf of signer_id.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
@@ -400,13 +406,13 @@ impl AddKeyAction {
         .into()
     }
 
-    /// A public key which will be associated with an access_key
+    /// PublicKey: A public key which will be associated with an access_key.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
     }
 
-    /// An access key with the permission
+    /// AccessKey: An access key with the permission.
     #[getter]
     pub fn access_key(&self) -> AccessKey {
         self.0.access_key.clone().into()
@@ -427,7 +433,7 @@ impl DeleteKeyAction {
         .into()
     }
 
-    /// A public key associated with the access_key to be deleted.
+    /// PublicKey: A public key associated with the access_key to be deleted.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
@@ -448,6 +454,7 @@ impl DeleteAccountAction {
         .into()
     }
 
+    /// AccountId: the ID of the account to be deleted.
     #[getter]
     pub fn beneficiary_id(&self) -> AccountId {
         self.0.beneficiary_id.clone().into()
@@ -487,28 +494,28 @@ impl SignedTransaction {
         SignedTransactionOriginal::new(signature.into(), transaction.into()).into()
     }
 
+    /// Signature: The transaction signature.
     #[getter]
     pub fn signature(&self) -> Signature {
         self.0.signature.clone().into()
     }
 
+    /// Transaction: The unsigned transaction.
     #[getter]
     pub fn transaction(&self) -> Transaction {
         self.0.transaction.clone().into()
     }
 
+    /// CryptoHash: The hash of the transaction.
     #[getter]
     pub fn hash(&self) -> CryptoHash {
         self.0.get_hash().into()
     }
 
+    /// int: The size of the serialized transaction in bytes.
     #[getter]
     pub fn size(&self) -> u64 {
         self.0.get_size()
-    }
-
-    pub fn init(&mut self) {
-        self.0.init()
     }
 }
 
@@ -624,12 +631,12 @@ impl ExecutionOutcome {
         }
         .into()
     }
-    /// Logs from this transaction or receipt.
+    /// list[str]: Logs from this transaction or receipt.
     #[getter]
     pub fn logs(&self) -> Vec<LogEntry> {
         self.0.logs.clone()
     }
-    /// Receipt IDs generated by this transaction or receipt.
+    /// list[CryptoHash]: Receipt IDs generated by this transaction or receipt.
     #[getter]
     pub fn receipt_ids(&self) -> Vec<CryptoHash> {
         self.0
@@ -639,32 +646,32 @@ impl ExecutionOutcome {
             .map(|x| x.into())
             .collect()
     }
-    /// The amount of the gas burnt by the given transaction or receipt.
+    /// int: The amount of the gas burnt by the given transaction or receipt.
     #[getter]
     pub fn gas_burnt(&self) -> Gas {
         self.0.gas_burnt
     }
-    /// The amount of tokens burnt corresponding to the burnt gas amount.
-    /// This value doesn't always equal to the `gas_burnt` multiplied by the gas price, because
+    /// int: The amount of tokens burnt corresponding to the burnt gas amount.
+    /// This value doesn't always equal to the ``gas_burnt`` multiplied by the gas price, because
     /// the prepaid gas price might be lower than the actual gas price and it creates a deficit.
     #[getter]
     pub fn tokens_burnt(&self) -> Balance {
         self.0.tokens_burnt
     }
-    /// The id of the account on which the execution happens. For transaction this is signer_id,
+    /// AccountId: The id of the account on which the execution happens. For transaction this is signer_id,
     /// for receipt this is receiver_id.
     #[getter]
     pub fn executor_id(&self) -> AccountId {
         self.0.executor_id.clone().into()
     }
-    /// Execution status. Contains the result in case of successful execution.
+    /// ExecutionStatus: Execution status. Contains the result in case of successful execution.
     /// NOTE: Should be the latest field since it contains unparsable by light client
     /// ExecutionStatus::Failure
     #[getter]
     pub fn status(&self) -> ExecutionStatus {
         self.0.status.clone().into()
     }
-    /// Execution metadata, versioned
+    /// ExecutionMetadata: Execution metadata, versioned
     #[getter]
     pub fn metadata(&self) -> ExecutionMetadata {
         self.0.metadata.clone().into()
@@ -790,12 +797,12 @@ impl ExecutionOutcomeWithId {
         }
         .into()
     }
-    /// The transaction hash or the receipt ID.
+    /// CryptoHash: The transaction hash or the receipt ID.
     #[getter]
     pub fn id(&self) -> CryptoHash {
         self.0.id.into()
     }
-    /// Should be the latest field since contains unparsable by light client ExecutionStatus::Failure
+    /// ExecutionOutcome: Should be the latest field since contains unparsable by light client ExecutionStatus::Failure
     #[getter]
     pub fn outcome(&self) -> ExecutionOutcome {
         self.0.outcome.clone().into()
@@ -831,20 +838,27 @@ impl ExecutionOutcomeWithIdAndProof {
         .into()
     }
 
+    /// list[MerklePathItem]: Path from the execution outcome to the outcome root.
     #[getter]
     pub fn proof(&self) -> Vec<MerklePathItem> {
         self.0.proof.clone().into_iter().map(|x| x.into()).collect()
     }
+    /// CryptoHash: The block hash.
     #[getter]
     pub fn block_hash(&self) -> CryptoHash {
         self.0.block_hash.into()
     }
-    /// Should be the latest field since contains unparsable by light client ExecutionStatus::Failure
+    /// ExecutionOutcomeWithId: Should be the latest field since contains unparsable by light client ExecutionStatus::Failure
     #[getter]
     pub fn outcome_with_id(&self) -> ExecutionOutcomeWithId {
         self.0.outcome_with_id.clone().into()
     }
 
+    /// Get the outcome ID.
+    ///
+    /// Returns:
+    ///     CryptoHash: outcome ID.
+    ///
     pub fn id(&self) -> CryptoHash {
         let underlying = *self.0.id();
         underlying.into()

@@ -195,7 +195,7 @@ impl AccessKey {
         .into()
     }
 
-    /// Nonce for this access key, used for tx nonce generation. When access key is created, nonce
+    /// int: Nonce for this access key, used for tx nonce generation. When access key is created, nonce
     /// is set to ``(block_height - 1) * 1e6`` to avoid tx hash collision on access key re-creation.
     /// See <https://github.com/near/nearcore/issues/3779> for more details.
     #[getter]
@@ -203,7 +203,7 @@ impl AccessKey {
         self.0.nonce
     }
 
-    /// Defines permissions for this access key.
+    /// AccessKeyPermission: Defines permissions for this access key.
     #[getter]
     pub fn permission(&self) -> AccessKeyPermission {
         self.0.permission.clone().into()
@@ -306,7 +306,7 @@ impl FunctionCallPermission {
         .into()
     }
 
-    /// Allowance is a balance limit to use by this access key to pay for function call gas and
+    /// int | None: Allowance is a balance limit to use by this access key to pay for function call gas and
     /// transaction fees. When this access key is used, both account balance and the allowance is
     /// decreased by the same value.
     /// `None` means unlimited allowance.
@@ -317,7 +317,7 @@ impl FunctionCallPermission {
         self.0.allowance
     }
 
-    // This isn't an AccountId because already existing records in testnet genesis have invalid
+    // str: This isn't an AccountId because already existing records in testnet genesis have invalid
     // values for this field (see: https://github.com/near/nearcore/pull/4621#issuecomment-892099860)
     // we accomodate those by using a string, allowing us to read and parse genesis.
     /// The access key only allows transactions with the given receiver's account id.
@@ -326,7 +326,7 @@ impl FunctionCallPermission {
         self.0.receiver_id.clone()
     }
 
-    /// A list of method names that can be used. The access key only allows transactions with the
+    /// list[str]: A list of method names that can be used. The access key only allows transactions with the
     /// function call of one of the given method names.
     /// Empty list means any method name can be used.
     #[getter]

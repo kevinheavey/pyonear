@@ -774,20 +774,25 @@ impl InMemorySigner {
         self.0.verify(data, &signature.into())
     }
 
+    /// AccountId: the signer's account ID.
     #[getter]
     pub fn account_id(&self) -> AccountId {
         self.0.account_id.clone().into()
     }
+    /// PublicKey: the signer's public key.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
     }
+
+    /// SecretKey: the signer's secret key.
     #[getter]
     pub fn secret_key(&self) -> SecretKey {
         self.0.secret_key.clone().into()
     }
 }
 
+/// A file for storing keys in.
 #[pyclass(module = "pyonear.crypto", subclass)]
 #[derive(From, Into, Serialize, Deserialize)]
 pub struct KeyFile(pub near_crypto::KeyFile);
@@ -859,14 +864,17 @@ impl KeyFile {
             .map_err(|e| PyIOError::new_err(e.to_string()))
     }
 
+    /// AccountId: the account ID.
     #[getter]
     pub fn account_id(&self) -> AccountId {
         self.0.account_id.clone().into()
     }
+    /// PublicKey: the public key.
     #[getter]
     pub fn public_key(&self) -> PublicKey {
         self.0.public_key.clone().into()
     }
+    /// SecretKey: the secret key.
     #[getter]
     pub fn secret_key(&self) -> SecretKey {
         self.0.secret_key.clone().into()

@@ -46,11 +46,13 @@ impl MerklePathItem {
         .into()
     }
 
+    /// CryptoHash: the hash field of the item.
     #[getter]
     pub fn hash(&self) -> CryptoHash {
         self.0.hash.into()
     }
 
+    /// Direction: the direction.
     #[getter]
     pub fn direction(&self) -> Direction {
         self.0.direction.clone().into()
