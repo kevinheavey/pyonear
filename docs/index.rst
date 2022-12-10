@@ -1,4 +1,5 @@
-.. image:: logo.jpeg
+.. image:: logo.png
+    :scale: 70 %
 
 pyonear
 =======
