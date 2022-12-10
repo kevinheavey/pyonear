@@ -824,10 +824,21 @@ impl ProfileData {
     pub fn compute_wasm_instruction_cost(&mut self, total_gas_burnt: u64) {
         self.0.compute_wasm_instruction_cost(total_gas_burnt)
     }
+
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_action_cost
+    ///
+    /// Args:
+    ///     action (ActionCosts)
+    ///
+    /// Returns:
+    ///     int
+    ///
     pub fn get_action_cost(&self, action: ActionCosts) -> u64 {
         self.0.get_action_cost(action.into())
     }
 
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost
+    ///
     /// Args:
     ///     ext (ExtCosts)
     ///
@@ -837,12 +848,16 @@ impl ProfileData {
         self.0.get_ext_cost(ext.into())
     }
 
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas
+    ///
     /// Returns:
     ///     int
     pub fn host_gas(&self) -> u64 {
         self.0.host_gas()
     }
 
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas
+    ///
     /// Returns:
     ///     int
     pub fn action_gas(&self) -> u64 {

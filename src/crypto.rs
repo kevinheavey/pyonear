@@ -432,6 +432,10 @@ impl ED25519SecretKey {
         near_crypto::ED25519SecretKey(key_bytes).into()
     }
 
+    /// Randomly generate the key.
+    ///
+    /// Returns:
+    ///     ED25519SecretKey
     #[staticmethod]
     pub fn from_random() -> Self {
         unwrap_enum!(
@@ -498,6 +502,10 @@ impl Secp256K1SecretKey {
         handle_py_err(secp256k1::SecretKey::from_slice(&key_bytes))
     }
 
+    /// Randomly generate the key.
+    ///
+    /// Returns:
+    ///     Secp256K1SecretKey
     #[staticmethod]
     pub fn from_random() -> Self {
         unwrap_enum!(
@@ -852,7 +860,7 @@ impl InMemorySigner {
     /// Build from seed.
     ///
     /// Args:
-    ///     account_id (AccountId)
+    ///     account_id(AccountId): the signer's account ID.
     ///     key_type (KeyType)
     ///     seed (str)
     ///
@@ -863,11 +871,23 @@ impl InMemorySigner {
         near_crypto::InMemorySigner::from_seed(account_id.into(), key_type.into(), seed).into()
     }
 
+    /// Build the signer from a secret key.
+    ///
+    /// Args:
+    ///     account_id(AccountId): The signer's account ID.
+    ///     secret_key (SecretKey): The signer's secret key.
     #[staticmethod]
     pub fn from_secret_key(account_id: AccountId, secret_key: SecretKey) -> Self {
         near_crypto::InMemorySigner::from_secret_key(account_id.into(), secret_key.into()).into()
     }
 
+    /// Read the signer from a file.
+    ///
+    /// Args:
+    ///     path (pathlib.Path): The file to read.
+    ///
+    /// Returns:
+    ///     InMemorySigner
     #[staticmethod]
     pub fn from_file(path: PathBuf) -> PyResult<Self> {
         let underlying = near_crypto::InMemorySigner::from_file(path.as_ref())
@@ -875,6 +895,10 @@ impl InMemorySigner {
         Ok(underlying.into())
     }
 
+    /// Randomly generate the key.
+    ///
+    /// Returns:
+    ///     InMemorySigner
     #[staticmethod]
     pub fn from_random(account_id: AccountId, key_type: KeyType) -> Self {
         near_crypto::InMemorySigner::from_random(account_id.into(), key_type.into()).into()
@@ -890,10 +914,28 @@ impl InMemorySigner {
     pub fn sign(&self, data: &[u8]) -> Signature {
         self.0.sign(data).into()
     }
+
+    /// See https://docs.rs/near-crypto/latest/near_crypto/trait.Signer.html#tymethod.compute_vrf_with_proof
+    ///
+    /// Args:
+    ///     data (bytes | Sequence[int])
+    ///
+    /// Returns:
+    ///     tuple[list[int], list[int]]
+    ///
     pub fn compute_vrf_with_proof(&self, data: &[u8]) -> ([u8; 32], [u8; 64]) {
         let res = self.0.compute_vrf_with_proof(data);
         (res.0 .0, res.1 .0)
     }
+
+    /// Save to a file.
+    ///
+    /// Args:
+    ///     path (pathlib.Path)
+    ///
+    /// Returns:
+    ///     None
+    ///
     pub fn write_to_file(&self, path: PathBuf) -> PyResult<()> {
         self.0
             .write_to_file(path.as_ref())
