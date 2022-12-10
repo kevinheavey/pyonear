@@ -53,7 +53,7 @@ use crate::{hash_enum, quick_struct_boilerplate_core, quick_struct_boilerplate_c
 
 type LogEntry = String;
 
-/// A ``Transaction`` is a collection of ``Action``s that describe what should be done at the destination (the receiver account).
+/// A ``Transaction`` is a collection of Actions that describe what should be done at the destination (the receiver account).
 ///
 /// See https://docs.near.org/concepts/basics/transactions/overview for more.
 ///
@@ -550,6 +550,15 @@ impl DeleteAccountAction {
     }
 }
 
+/// A ``SignedTransction`` is the result of calling ``Transaction.sign``.
+/// The data inside a ``SignedTransaction`` cannot be changed.
+/// If you have a ``SignedTransction`` and you want to make some changes,
+/// use ``my_signed_tx.transaction`` to retrieve an unsigned transaction object.
+///
+/// Args:
+///     signature (Signature): The transaction signature.
+///     transaction (Transaction): The unsigned transaction.
+///
 #[derive(
     BorshSerialize,
     BorshDeserialize,
