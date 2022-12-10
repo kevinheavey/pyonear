@@ -1,5 +1,6 @@
 .. image:: logo.png
     :scale: 70 %
+    :align: center
 
 pyonear
 =======
