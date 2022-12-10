@@ -102,47 +102,57 @@ impl Account {
         AccountOriginal::new(amount, locked, code_hash.into(), storage_usage).into()
     }
 
-    /// The total not locked tokens.
+    /// int: The total not locked tokens.
+    #[getter]
     pub fn amount(&self) -> Balance {
         self.0.amount()
     }
 
-    /// The amount locked due to staking.
+    /// int: The amount locked due to staking.
+    #[getter]
     pub fn locked(&self) -> Balance {
         self.0.locked()
     }
 
-    /// Hash of the code stored in the storage for this account.
+    /// CryptoHash: Hash of the code stored in the storage for this account.
+    #[getter]
     pub fn code_hash(&self) -> CryptoHash {
         self.0.code_hash().into()
     }
 
-    /// Storage used by the given account, includes account id, this struct, access keys and other data.
+    /// int: Storage used by the given account, includes account id, this struct, access keys and other data.
+    #[getter]
     pub fn storage_usage(&self) -> StorageUsage {
         self.0.storage_usage()
     }
 
-    /// Version of Account in re migrations and similar
+    /// AccountVersion: Version of Account in re migrations and similar
+    #[getter]
     pub fn version(&self) -> AccountVersion {
         self.0.version().into()
     }
 
+    #[setter]
     pub fn set_amount(&mut self, amount: Balance) {
         self.0.set_amount(amount);
     }
 
+    #[setter]
     pub fn set_locked(&mut self, locked: Balance) {
         self.0.set_locked(locked);
     }
 
+    #[setter]
     pub fn set_code_hash(&mut self, code_hash: CryptoHash) {
         self.0.set_code_hash(code_hash.into());
     }
 
+    #[setter]
     pub fn set_storage_usage(&mut self, storage_usage: StorageUsage) {
         self.0.set_storage_usage(storage_usage);
     }
 
+    #[setter]
     pub fn set_version(&mut self, version: AccountVersion) {
         self.0.set_version(version.into());
     }
@@ -162,7 +172,6 @@ common_methods_default!(Account);
 /// is identified by a unique (within the account) public key. One account may have large number of
 /// access keys. Access keys allow to act on behalf of the account by restricting transactions
 /// that can be issued.
-/// ``account_id,public_key`` is a key in the state.
 #[pyclass(module = "pyonear.account", subclass)]
 #[derive(
     BorshSerialize,
@@ -212,6 +221,8 @@ impl AccessKey {
     pub const ACCESS_KEY_NONCE_RANGE_MULTIPLIER: u64 =
         AccessKeyOriginal::ACCESS_KEY_NONCE_RANGE_MULTIPLIER;
 
+    /// Returns:
+    ///     AccessKey.
     #[staticmethod]
     pub fn full_access() -> Self {
         AccessKeyOriginal::full_access().into()

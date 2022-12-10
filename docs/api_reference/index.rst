@@ -6,7 +6,7 @@ API Reference
 Modules:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    account_id
    account

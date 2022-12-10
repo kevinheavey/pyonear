@@ -133,6 +133,14 @@ impl Transaction {
         (res.0.into(), res.1)
     }
 
+    /// Sign this transaction.
+    ///
+    /// Args:
+    ///     signer (Signer): The transasction signer.
+    ///
+    /// Returns:
+    ///     SignedTransaction: The signed transaction.
+    ///
     pub fn sign(&self, signer: Signer) -> SignedTransaction {
         let dyn_signer: Box<dyn SignerTrait> = match signer {
             Signer::Empty(x) => Box::new(x.0),
@@ -141,14 +149,38 @@ impl Transaction {
         self.0.clone().sign(&*dyn_signer).into()
     }
 
+    /// Mutably add a ``CreateAccount`` action to this transaction.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn create_account(&mut self) -> Self {
         self.0.clone().create_account().into()
     }
 
+    /// Mutably add a ``DeployContract`` action to this transaction.
+    ///
+    /// Args:
+    ///     code (bytes | Sequence[int]): The webassembly binary.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn deploy_contract(&mut self, code: Vec<u8>) -> Self {
         self.0.clone().deploy_contract(code).into()
     }
 
+    /// Mutably add a ``FunctionCall`` action to this transaction.
+    ///
+    /// Args:
+    ///     method_name (str): The name of the method to call.
+    ///     args (bytes | Sequence[int]): The arguments.
+    ///     gas (int): Max amount of gas that method call can use.
+    ///     deposit (int): Amount of NEAR (in yoctoNEAR) to send together with the call.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn function_call(
         &mut self,
         method_name: String,
@@ -162,14 +194,40 @@ impl Transaction {
             .into()
     }
 
+    /// Mutably add a ``Transfer`` action to this transaction.
+    ///
+    /// Args:
+    ///     deposit (int): Amount of NEAR (in yoctoNEAR) to send.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn transfer(&mut self, deposit: Balance) -> Self {
         self.0.clone().transfer(deposit).into()
     }
 
+    /// Mutably add a ``Stake`` action to this transaction.
+    ///
+    /// Args:
+    ///     stake (int): Amount of tokens to stake.
+    ///     public_key (PublicKey): Validator key which will be used to sign transactions on behalf of signer_id.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn stake(&mut self, stake: Balance, public_key: PublicKey) -> Self {
         self.0.clone().stake(stake, public_key.into()).into()
     }
 
+    /// Mutably add an ``AddKey`` action to this transaction.
+    ///
+    /// Args:
+    ///     public_key (PublicKey): A public key which will be associated with an access_key.
+    ///     access_key (AccessKey): An access key with the permission.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn add_key(&mut self, public_key: PublicKey, access_key: AccessKey) -> Self {
         self.0
             .clone()
@@ -177,10 +235,26 @@ impl Transaction {
             .into()
     }
 
+    /// Mutably add a ``DeleteKey`` action to this transaction.
+    ///
+    /// Args:
+    ///     public_key (PublicKey): A public key associated with the access_key to be deleted.
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn delete_key(&mut self, public_key: PublicKey) -> Self {
         self.0.clone().delete_key(public_key.into()).into()
     }
 
+    /// Mutably add a ``DeleteAccount`` action to this transaction.
+    ///
+    /// Args:
+    ///     benficiary_id (AccountId)
+    ///
+    /// Returns:
+    ///     Transaction: the transaction object.
+    ///
     pub fn delete_account(&mut self, beneficiary_id: AccountId) -> Self {
         self.0.clone().delete_account(beneficiary_id.into()).into()
     }
@@ -689,7 +763,6 @@ pub enum ExecutionMetadataFieldless {
 hash_enum!(ExecutionMetadataFieldless);
 
 /// Profile of gas consumption.
-/// When add new cost, the new cost should also be append to Cost::ALL
 #[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone, Default, From, Into)]
 #[pyclass(module = "pyonear.transasction", subclass)]
 pub struct ProfileData(pub ProfileDataOriginal);
@@ -703,14 +776,31 @@ impl ProfileData {
         ProfileDataOriginal::new().into()
     }
 
+    /// Args:
+    ///     other (ProfileData)
+    ///
+    /// Returns:
+    ///     None
     pub fn merge(&mut self, other: &ProfileData) {
         self.0.merge(&other.0)
     }
 
+    /// Args:
+    ///     action (ActionCosts)
+    ///     value (int)
+    ///
+    /// Returns:
+    ///     None
     pub fn add_action_cost(&mut self, action: ActionCosts, value: u64) {
         self.0.add_action_cost(action.into(), value)
     }
 
+    /// Args:
+    ///     ext (ExtCosts)
+    ///     value (int)
+    ///
+    /// Returns:
+    ///     None
     pub fn add_ext_cost(&mut self, ext: ExtCosts, value: u64) {
         self.0.add_ext_cost(ext.into(), value)
     }
@@ -723,6 +813,14 @@ impl ProfileData {
     /// This is because WasmInstruction is the hottest cost and is implemented
     /// with the help on the VM side, so we don't want to have profiling logic
     /// there both for simplicity and efficiency reasons.
+    ///
+    /// Args:
+    ///     total_gas_burnt (Sequence[bytes]): The total gas burnt by the contract call.
+    ///     program_id (Pubkey): The program ID.
+    ///
+    /// Returns:
+    ///     int: the WASM instruction cost.
+    ///
     pub fn compute_wasm_instruction_cost(&mut self, total_gas_burnt: u64) {
         self.0.compute_wasm_instruction_cost(total_gas_burnt)
     }
@@ -730,14 +828,23 @@ impl ProfileData {
         self.0.get_action_cost(action.into())
     }
 
+    /// Args:
+    ///     ext (ExtCosts)
+    ///
+    /// Returns:
+    ///     int
     pub fn get_ext_cost(&self, ext: ExtCosts) -> u64 {
         self.0.get_ext_cost(ext.into())
     }
 
+    /// Returns:
+    ///     int
     pub fn host_gas(&self) -> u64 {
         self.0.host_gas()
     }
 
+    /// Returns:
+    ///     int
     pub fn action_gas(&self) -> u64 {
         self.0.action_gas()
     }
@@ -808,6 +915,8 @@ impl ExecutionOutcomeWithId {
         self.0.outcome.clone().into()
     }
 
+    /// Returns:
+    ///     list[CryptoHash]
     pub fn to_hashes(&self) -> Vec<CryptoHash> {
         self.0.to_hashes().into_iter().map(|x| x.into()).collect()
     }

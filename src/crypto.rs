@@ -288,6 +288,10 @@ impl ED25519PublicKey {
         near_crypto::ED25519PublicKey(key_bytes).into()
     }
 
+    /// Create an empty pubkey.
+    ///
+    /// Returns:
+    ///     ED25519PublicKey
     #[staticmethod]
     pub fn empty() -> Self {
         unwrap_enum!(
@@ -296,6 +300,13 @@ impl ED25519PublicKey {
         )
     }
 
+    /// Build from seed.
+    ///
+    /// Args:
+    ///     seed (str)
+    ///
+    /// Returns:
+    ///     ED25519PublicKey
     #[staticmethod]
     pub fn from_seed(seed: &str) -> Self {
         unwrap_enum!(
@@ -324,6 +335,10 @@ impl Secp256K1PublicKey {
         near_crypto::Secp256K1PublicKey::from(key_bytes).into()
     }
 
+    /// Create an empty pubkey.
+    ///
+    /// Returns:
+    ///     Secp256K1PublicKey
     #[staticmethod]
     pub fn empty() -> Self {
         unwrap_enum!(
@@ -425,6 +440,13 @@ impl ED25519SecretKey {
         )
     }
 
+    /// Sign a message with this secret key.
+    ///
+    /// Args:
+    ///     data (bytes | Sequence[int]): The message to sign.
+    ///
+    /// Returns
+    ///     ED25519Signature: the message signature.
     pub fn sign(&self, data: &[u8]) -> ED25519Signature {
         let sk = near_crypto::SecretKey::from(self);
         unwrap_enum!(sk.sign(data), near_crypto::Signature::ED25519)
@@ -436,6 +458,13 @@ impl ED25519SecretKey {
         Self::from_str(s)
     }
 
+    /// Build from seed.
+    ///
+    /// Args:
+    ///     seed (str)
+    ///
+    /// Returns:
+    ///     ED25519SecretKey
     #[staticmethod]
     pub fn from_seed(seed: &str) -> Self {
         unwrap_enum!(
@@ -444,6 +473,10 @@ impl ED25519SecretKey {
         )
     }
 
+    /// Retrieve the public key of this secret key.
+    ///
+    /// Returns:
+    ///     ED25519PublicKey: The public key.
     pub fn public_key(&self) -> ED25519PublicKey {
         unwrap_enum!(
             near_crypto::SecretKey::from(self).public_key(),
@@ -479,6 +512,13 @@ impl Secp256K1SecretKey {
         Self::from_str(s)
     }
 
+    /// Build from seed.
+    ///
+    /// Args:
+    ///     seed (str)
+    ///
+    /// Returns:
+    ///     Secp256K1SecretKey
     #[staticmethod]
     pub fn from_seed(seed: &str) -> Self {
         unwrap_enum!(
@@ -487,6 +527,10 @@ impl Secp256K1SecretKey {
         )
     }
 
+    /// Retrieve the public key of this secret key.
+    ///
+    /// Returns:
+    ///     Secp256K1PublicKey: The public key.
     pub fn public_key(&self) -> Secp256K1PublicKey {
         unwrap_enum!(
             near_crypto::SecretKey::from(self).public_key(),
@@ -494,6 +538,13 @@ impl Secp256K1SecretKey {
         )
     }
 
+    /// Sign a message with this secret key.
+    ///
+    /// Args:
+    ///     data (bytes | Sequence[int]): The message to sign.
+    ///
+    /// Returns
+    ///     Secp256K1Signature: the message signature.
     pub fn sign(&self, data: &[u8]) -> Secp256K1Signature {
         let sk = near_crypto::SecretKey::from(self);
         unwrap_enum!(sk.sign(data), near_crypto::Signature::SECP256K1)
@@ -568,6 +619,10 @@ impl ED25519Signature {
         handle_py_err(Self::try_from(sig_bytes.as_ref()))
     }
 
+    /// Create an empty signature.
+    ///
+    /// Returns:
+    ///     ED25519Signature
     #[staticmethod]
     pub fn empty() -> Self {
         unwrap_enum!(
@@ -576,6 +631,16 @@ impl ED25519Signature {
         )
     }
 
+    /// Verifies that this signature comes from signing the data with given public key.
+    /// Also if public key isn't on the curve returns `false`.
+    ///
+    /// Args:
+    ///     data (Sequence[int] | bytes): the unsigned message.
+    ///     public_key (ED25519PublicKey): The public key of the signer.
+    ///
+    /// Returns:
+    ///     bool: Signature verification result
+    ///
     pub fn verify(&self, data: &[u8], public_key: &ED25519PublicKey) -> bool {
         let pubkey = near_crypto::PublicKey::from(public_key);
         near_crypto::Signature::from(self).verify(data, &pubkey)
@@ -601,6 +666,10 @@ impl Secp256K1Signature {
         near_crypto::Secp256K1Signature::from(sig_bytes).into()
     }
 
+    /// Create an empty signature.
+    ///
+    /// Returns:
+    ///     Secp256K1Signature
     #[staticmethod]
     pub fn empty() -> Self {
         unwrap_enum!(
@@ -609,15 +678,38 @@ impl Secp256K1Signature {
         )
     }
 
+    /// Verifies that this signature comes from signing the data with given public key.
+    /// Also if public key isn't on the curve returns `false`.
+    ///
+    /// Args:
+    ///     data (Sequence[int] | bytes): the unsigned message.
+    ///     public_key (Secp256K1PublicKey): The public key of the signer.
+    ///
+    /// Returns:
+    ///     bool: Signature verification result
+    ///
     pub fn verify(&self, data: &[u8], public_key: &Secp256K1PublicKey) -> bool {
         let pubkey = near_crypto::PublicKey::from(public_key);
         near_crypto::Signature::from(self).verify(data, &pubkey)
     }
 
+    /// Args:
+    ///     reject_upper: bool
+    ///
+    /// Returns:
+    ///     bool
     pub fn check_signature_values(&self, reject_upper: bool) -> bool {
         self.0.check_signature_values(reject_upper)
     }
 
+    /// Recover the pubkey of the given message's signer.
+    ///
+    /// Args:
+    ///     msg (bytes | Sequence[int]): the unsigned message.
+    ///
+    /// Returns:
+    ///     Secp256K1PublicKey: The signer's pubkey.
+    ///
     pub fn recover(&self, msg: [u8; 32]) -> PyResult<Secp256K1PublicKey> {
         handle_py_err(self.0.recover(msg))
     }
@@ -634,6 +726,11 @@ pub struct EmptySigner(pub near_crypto::EmptySigner);
 
 #[pymethods]
 impl EmptySigner {
+    /// Returns an empty public key.
+    ///
+    /// Returns:
+    ///     ED25519PublicKey: empty pubkey.
+    ///
     #[staticmethod]
     pub fn public_key() -> ED25519PublicKey {
         unwrap_enum!(
@@ -642,6 +739,11 @@ impl EmptySigner {
         )
     }
 
+    /// Returns an empty signature.
+    ///
+    /// Returns:
+    ///     ED25519Signature: empty signature.
+    ///
     #[staticmethod]
     pub fn sign() -> ED25519Signature {
         unwrap_enum!(
@@ -650,6 +752,16 @@ impl EmptySigner {
         )
     }
 
+    /// Verifies that this signature comes from signing the data with this signer's public key.
+    /// Also if public key isn't on the curve returns `false`.
+    ///
+    /// Args:
+    ///     data (Sequence[int] | bytes): the unsigned message.
+    ///     signature (Signature): The signature.
+    ///
+    /// Returns:
+    ///     bool: Signature verification result
+    ///
     #[staticmethod]
     pub fn verify(data: &[u8], signature: Signature) -> bool {
         near_crypto::EmptySigner {}.verify(data, &signature.into())
@@ -737,6 +849,15 @@ impl InMemorySigner {
         .into()
     }
 
+    /// Build from seed.
+    ///
+    /// Args:
+    ///     account_id (AccountId)
+    ///     key_type (KeyType)
+    ///     seed (str)
+    ///
+    /// Returns:
+    ///     InMemorySigner
     #[staticmethod]
     pub fn from_seed(account_id: AccountId, key_type: KeyType, seed: &str) -> Self {
         near_crypto::InMemorySigner::from_seed(account_id.into(), key_type.into(), seed).into()
@@ -758,6 +879,14 @@ impl InMemorySigner {
     pub fn from_random(account_id: AccountId, key_type: KeyType) -> Self {
         near_crypto::InMemorySigner::from_random(account_id.into(), key_type.into()).into()
     }
+
+    /// Sign a message with this signer's secret key.
+    ///
+    /// Args:
+    ///     data (bytes | Sequence[int]): The message to sign.
+    ///
+    /// Returns
+    ///     Signature: the message signature.
     pub fn sign(&self, data: &[u8]) -> Signature {
         self.0.sign(data).into()
     }
@@ -770,6 +899,17 @@ impl InMemorySigner {
             .write_to_file(path.as_ref())
             .map_err(|e| PyIOError::new_err(e.to_string()))
     }
+
+    /// Verifies that this signature comes from signing the data with this signer's public key.
+    /// Also if public key isn't on the curve returns `false`.
+    ///
+    /// Args:
+    ///     data (Sequence[int] | bytes): the unsigned message.
+    ///     signature (Signature): The signature.
+    ///
+    /// Returns:
+    ///     bool: Signature verification result
+    ///
     pub fn verify(&self, data: &[u8], signature: Signature) -> bool {
         self.0.verify(data, &signature.into())
     }
@@ -851,6 +991,13 @@ impl KeyFile {
         .into()
     }
 
+    /// Read from a file.
+    ///
+    /// Args:
+    ///     path (pathlib.Path): The file to read.
+    ///
+    /// Returns:
+    ///     KeyFile
     #[staticmethod]
     pub fn from_file(path: PathBuf) -> PyResult<Self> {
         let underlying = near_crypto::KeyFile::from_file(path.as_ref())
@@ -858,6 +1005,11 @@ impl KeyFile {
         Ok(underlying.into())
     }
 
+    /// Write to a file.
+    ///
+    /// Args:
+    ///     path (pathlib.Path): The file to write.
+    ///
     pub fn write_to_file(&self, path: PathBuf) -> PyResult<()> {
         self.0
             .write_to_file(path.as_ref())
