@@ -104,7 +104,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [x86_64, i686]
+        # target: [x86_64, i686]
+        target: [x86_64]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -142,7 +143,7 @@ jobs:
       matrix:
         target:
           - x86_64-unknown-linux-musl
-          - i686-unknown-linux-musl
+          # - i686-unknown-linux-musl
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -183,7 +184,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [aarch64, armv7, s390x, ppc64]
+        # target: [aarch64, armv7, s390x, ppc64]
+        target: [aarch64, s390x, ppc64]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
