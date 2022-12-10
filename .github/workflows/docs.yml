@@ -27,7 +27,6 @@ jobs:
           args: --release --out dist
       - name: Install module
         run: |
-          pip install
           pip install pyonear --no-index --no-dependencies --find-links dist --force-reinstall
 
       - name: Build documentation
