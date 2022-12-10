@@ -51,6 +51,19 @@ use crate::{hash_enum, quick_struct_boilerplate_core, quick_struct_boilerplate_c
 
 type LogEntry = String;
 
+/// A ``Transaction`` is a collection of ``Action``s that describe what should be done at the destination (the receiver account).
+///
+/// See https://docs.near.org/concepts/basics/transactions/overview for more.
+///
+/// Args:
+///
+///     signer_id (AccountId): The account on whose behalf the transaciton is signed.
+///     public_key (PublicKey): A public key of the access key which was used to sign an account.
+///     nonce (int): Used to determine order of transaction in the pool. It increments for a combination of `signer_id` and `public_key`,
+///     receiver_id (AccountId): Receiver account for this transaction.
+///     block_hash (CryptoHash): The hash of the block in the blockchain on top of which the given transaction is valid.
+///     actions (list[Action]): A list of actions to be applied.
+///
 #[derive(
     BorshSerialize,
     BorshDeserialize,
@@ -90,7 +103,7 @@ impl Transaction {
         .into()
     }
 
-    /// AccountId: An account on which behalf transaction is signed
+    /// AccountId: The account on whose behalf the transaction is signed.
     #[getter]
     pub fn signer_id(&self) -> AccountId {
         self.0.signer_id.clone().into()

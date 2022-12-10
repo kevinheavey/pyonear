@@ -55,6 +55,12 @@ impl CryptoHash {
         CryptoHashOriginal::hash_bytes(data).into()
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    CryptoHash
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -63,6 +69,10 @@ impl CryptoHash {
         Ok(underlying.into())
     }
 
+    /// Build a new CryptoHash using the Rust ``Default`` trait.
+    ///
+    /// Returns:
+    ///     CryptoHash
     #[staticmethod]
     #[pyo3(name = "default")]
     pub fn new_default() -> Self {

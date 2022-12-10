@@ -315,6 +315,12 @@ impl ED25519PublicKey {
         )
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    ED25519PublicKey
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -347,6 +353,12 @@ impl Secp256K1PublicKey {
         )
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    Secp256K1PublicKey
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -456,6 +468,12 @@ impl ED25519SecretKey {
         unwrap_enum!(sk.sign(data), near_crypto::Signature::ED25519)
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    ED25519SecretKey
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -514,6 +532,12 @@ impl Secp256K1SecretKey {
         )
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    Secp256K1SecretKey
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -654,6 +678,12 @@ impl ED25519Signature {
         near_crypto::Signature::from(self).verify(data, &pubkey)
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    ED25519Signature
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
@@ -722,6 +752,12 @@ impl Secp256K1Signature {
         handle_py_err(self.0.recover(msg))
     }
 
+    /// Parse from a string.
+    ///
+    /// s (str): The string to parse
+    ///
+    /// Returns:
+    ///    Secp256K1Signature
     #[staticmethod]
     #[pyo3(name = "from_str")]
     pub fn new_from_str(s: &str) -> PyResult<Self> {
