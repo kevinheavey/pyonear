@@ -40,6 +40,7 @@ def test_verify_transaction() -> None:
     bytes_ = bytes(transaction)
     decoded_tx = SignedTransaction.from_bytes(bytes_)
     assert verify_transaction_signature(decoded_tx, valid_keys)
+    assert SignedTransaction.from_base64(transaction.to_base64()) == transaction
 
 
 def test_serialize_transaction() -> None:

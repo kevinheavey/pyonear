@@ -2,6 +2,7 @@ use derive_more::{From, Into};
 use near_crypto::Signer as SignerTrait;
 use near_primitives::types::{Balance, Nonce};
 use pyo3::{
+    exceptions::PyValueError,
     prelude::*,
     types::{PyInt, PyTuple},
     PyTypeInfo,
@@ -15,6 +16,7 @@ use borsh::{BorshDeserialize, BorshSerialize};
 use serde::{Deserialize, Serialize};
 
 use near_primitives::{
+    serialize::{from_base64, to_base64},
     transaction::{
         verify_transaction_signature as verify_transaction_signature_original,
         Action as ActionOriginal, AddKeyAction as AddKeyActionOriginal,
@@ -42,7 +44,7 @@ use crate::{
     config::{ActionCosts, ExtCosts},
     crypto::{PublicKey, Signature, Signer},
     crypto_hash::CryptoHash,
-    error::core::get_tx_execution_error_members,
+    error::{core::get_tx_execution_error_members, exception::handle_py_value_err},
     merkle::MerklePathItem,
     vec_type_object,
 };
@@ -603,6 +605,28 @@ impl SignedTransaction {
     #[getter]
     pub fn size(&self) -> u64 {
         self.0.get_size()
+    }
+
+    /// Convert to a base64 string.
+    ///
+    /// Returns:
+    ///     str
+    pub fn to_base64(&self) -> String {
+        to_base64(self.0.try_to_vec().unwrap())
+    }
+
+    #[staticmethod]
+    /// Build to a base64 string.
+    ///
+    /// Args:
+    ///     s (str): The base64-encoded transaction.
+    ///
+    /// Returns:
+    ///     SignedTransaction
+    ///
+    pub fn from_base64(s: &str) -> PyResult<Self> {
+        let bytes = from_base64(s).map_err(|e| PyValueError::new_err(e.to_string()))?;
+        handle_py_value_err(SignedTransactionOriginal::try_from_slice(&bytes))
     }
 }
 

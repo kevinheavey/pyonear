@@ -10,7 +10,7 @@ def test_account_serialization() -> None:
 
 def test_account_deserialization() -> None:
     new_account = Account(100, 200, CryptoHash.default(), 300)
-    assert new_account.version() == AccountVersion.V1
+    assert new_account.version == AccountVersion.V1
     new_bytes = bytes(new_account)
     deserialized_account = Account.from_bytes(new_bytes)
     assert deserialized_account == new_account
