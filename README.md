@@ -1,3 +1,15 @@
+<div align="center">
+    <img src="https://raw.githubusercontent.com/kevinheavey/pyonear/main/docs/logo.png" width="50%" height="50%">
+</div>
+
+---
+
+[![Actions
+Status](https://github.com/kevinheavey/pyonear/workflows/CI/badge.svg)](https://github.com/kevinheavey/pyonear/actions?query=workflow%3ACI)
+[![PyPI version](https://badge.fury.io/py/pyonear.svg)](https://badge.fury.io/py/pyonear)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kevinheavey/pyonear/blob/maim/LICENSE)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # Pyonear
 
 `pyonear` is a Python binding to the NEAR Rust API crates. It provides
