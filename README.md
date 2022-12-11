@@ -17,6 +17,8 @@ The wrapped types come from the [near-primitives](https://crates.io/crates/near-
 [near-crypto](https://crates.io/crates/near-crypto) and
 [near-vm-errors](https://crates.io/crates/near-vm-errors) crates.
 
+[Read the documentation](https://kevinheavey.github.io/pyonear)
+
 ## Installation
 
 ```
