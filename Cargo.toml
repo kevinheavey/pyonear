@@ -15,9 +15,9 @@ crate-type = ["cdylib", "rlib"]
 serde = "^1.0.136"
 serde_json = "^1.0.59"
 derive_more = "0.99.17"
-pyo3 = { git = "https://github.com/PyO3/pyo3", rev = "1d20f2a", features = ["macros", "extension-module", "abi3-py37"] }
-solders-traits = { git = "https://github.com/kevinheavey/solders", rev = "e197350" }
-solders-macros = { git = "https://github.com/kevinheavey/solders", rev = "e197350" }
+pyo3 = { version = "0.18.0", features = ["macros", "extension-module", "abi3-py37"] }
+solders-traits = "0.14.1"
+solders-macros = "0.14.1"
 near-crypto = "0.15.0"
 ed25519-dalek = "1.0.1"
 serde_with = "2.1.0"
