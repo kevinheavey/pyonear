@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>error &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="core" href="core.html" />
+    <link rel="prev" title="crypto" href="../crypto.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../account_id.html">account_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../account.html">account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config.html">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">crypto</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">error</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="core.html">core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exception.html">exception</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm.html">vm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../merkle.html">merkle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transaction.html">transaction</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">API Reference</a> &raquo;</li>
+        
+      <li>error</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/error/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="error">
+<h1>error<a class="headerlink" href="#error" title="Permalink to this heading">¶</a></h1>
+<p>Modules:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ActionsValidationErrorFieldless"><code class="docutils literal notranslate"><span class="pre">ActionsValidationErrorFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.TotalPrepaidGasExceeded"><code class="docutils literal notranslate"><span class="pre">TotalPrepaidGasExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.TotalNumberOfActionsExceeded"><code class="docutils literal notranslate"><span class="pre">TotalNumberOfActionsExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded"><code class="docutils literal notranslate"><span class="pre">AddKeyMethodNamesNumberOfBytesExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AddKeyMethodNameLengthExceeded"><code class="docutils literal notranslate"><span class="pre">AddKeyMethodNameLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidAccountId"><code class="docutils literal notranslate"><span class="pre">InvalidAccountId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ContractSizeExceeded"><code class="docutils literal notranslate"><span class="pre">ContractSizeExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.FunctionCallMethodNameLengthExceeded"><code class="docutils literal notranslate"><span class="pre">FunctionCallMethodNameLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.FunctionCallArgumentsLengthExceeded"><code class="docutils literal notranslate"><span class="pre">FunctionCallArgumentsLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.UnsuitableStakingKey"><code class="docutils literal notranslate"><span class="pre">UnsuitableStakingKey</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidPredecessorId"><code class="docutils literal notranslate"><span class="pre">InvalidPredecessorId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ReceiptInvalidReceiverId"><code class="docutils literal notranslate"><span class="pre">ReceiptInvalidReceiverId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ReceiptInvalidSignerId"><code class="docutils literal notranslate"><span class="pre">ReceiptInvalidSignerId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidDataReceiverId"><code class="docutils literal notranslate"><span class="pre">InvalidDataReceiverId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ReturnedValueLengthExceeded"><code class="docutils literal notranslate"><span class="pre">ReturnedValueLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.NumberInputDataDependenciesExceeded"><code class="docutils literal notranslate"><span class="pre">NumberInputDataDependenciesExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidAccessKeyErrorFieldless"><code class="docutils literal notranslate"><span class="pre">InvalidAccessKeyErrorFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AccessKeyNotFound"><code class="docutils literal notranslate"><span class="pre">AccessKeyNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ReceiverMismatch"><code class="docutils literal notranslate"><span class="pre">ReceiverMismatch</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.MethodNameMismatch"><code class="docutils literal notranslate"><span class="pre">MethodNameMismatch</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.NotEnoughAllowance"><code class="docutils literal notranslate"><span class="pre">NotEnoughAllowance</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidTxErrorFieldless"><code class="docutils literal notranslate"><span class="pre">InvalidTxErrorFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidSignerId"><code class="docutils literal notranslate"><span class="pre">InvalidSignerId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.SignerDoesNotExist"><code class="docutils literal notranslate"><span class="pre">SignerDoesNotExist</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidNonce"><code class="docutils literal notranslate"><span class="pre">InvalidNonce</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.NonceTooLarge"><code class="docutils literal notranslate"><span class="pre">NonceTooLarge</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InvalidReceiverId"><code class="docutils literal notranslate"><span class="pre">InvalidReceiverId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.NotEnoughBalance"><code class="docutils literal notranslate"><span class="pre">NotEnoughBalance</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.LackBalanceForState"><code class="docutils literal notranslate"><span class="pre">LackBalanceForState</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.TransactionSizeExceeded"><code class="docutils literal notranslate"><span class="pre">TransactionSizeExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AccountAlreadyExists"><code class="docutils literal notranslate"><span class="pre">AccountAlreadyExists</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AccountDoesNotExist"><code class="docutils literal notranslate"><span class="pre">AccountDoesNotExist</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.CreateAccountOnlyByRegistrar"><code class="docutils literal notranslate"><span class="pre">CreateAccountOnlyByRegistrar</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.CreateAccountNotAllowed"><code class="docutils literal notranslate"><span class="pre">CreateAccountNotAllowed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ActorNoPermission"><code class="docutils literal notranslate"><span class="pre">ActorNoPermission</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.DeleteKeyDoesNotExist"><code class="docutils literal notranslate"><span class="pre">DeleteKeyDoesNotExist</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.AddKeyAlreadyExists"><code class="docutils literal notranslate"><span class="pre">AddKeyAlreadyExists</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.DeleteAccountStaking"><code class="docutils literal notranslate"><span class="pre">DeleteAccountStaking</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.TriesToUnstake"><code class="docutils literal notranslate"><span class="pre">TriesToUnstake</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.TriesToStake"><code class="docutils literal notranslate"><span class="pre">TriesToStake</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.InsufficientStake"><code class="docutils literal notranslate"><span class="pre">InsufficientStake</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.OnlyImplicitAccountCreationAllowed"><code class="docutils literal notranslate"><span class="pre">OnlyImplicitAccountCreationAllowed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.DeleteAccountWithLargeState"><code class="docutils literal notranslate"><span class="pre">DeleteAccountWithLargeState</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html#pyonear.error.core.ActionError"><code class="docutils literal notranslate"><span class="pre">ActionError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exception.html">exception</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exception.html#pyonear.error.exception.ParseKeyError"><code class="docutils literal notranslate"><span class="pre">ParseKeyError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html#pyonear.error.exception.ParseSignatureError"><code class="docutils literal notranslate"><span class="pre">ParseSignatureError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html#pyonear.error.exception.TryFromSliceError"><code class="docutils literal notranslate"><span class="pre">TryFromSliceError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html#pyonear.error.exception.Secp256K1Error"><code class="docutils literal notranslate"><span class="pre">Secp256K1Error</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vm.html">vm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.HostErrorFieldless"><code class="docutils literal notranslate"><span class="pre">HostErrorFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.GuestPanic"><code class="docutils literal notranslate"><span class="pre">GuestPanic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.InvalidPromiseIndex"><code class="docutils literal notranslate"><span class="pre">InvalidPromiseIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.InvalidPromiseResultIndex"><code class="docutils literal notranslate"><span class="pre">InvalidPromiseResultIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.InvalidRegisterId"><code class="docutils literal notranslate"><span class="pre">InvalidRegisterId</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.IteratorWasInvalidated"><code class="docutils literal notranslate"><span class="pre">IteratorWasInvalidated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.InvalidReceiptIndex"><code class="docutils literal notranslate"><span class="pre">InvalidReceiptIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.InvalidIteratorIndex"><code class="docutils literal notranslate"><span class="pre">InvalidIteratorIndex</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.ProhibitedInView"><code class="docutils literal notranslate"><span class="pre">ProhibitedInView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.NumberOfLogsExceeded"><code class="docutils literal notranslate"><span class="pre">NumberOfLogsExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.KeyLengthExceeded"><code class="docutils literal notranslate"><span class="pre">KeyLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.ValueLengthExceeded"><code class="docutils literal notranslate"><span class="pre">ValueLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.TotalLogLengthExceeded"><code class="docutils literal notranslate"><span class="pre">TotalLogLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.NumberPromisesExceeded"><code class="docutils literal notranslate"><span class="pre">NumberPromisesExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.NumberInputDataDependenciesExceeded"><code class="docutils literal notranslate"><span class="pre">NumberInputDataDependenciesExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.ReturnedValueLengthExceeded"><code class="docutils literal notranslate"><span class="pre">ReturnedValueLengthExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.ContractSizeExceeded"><code class="docutils literal notranslate"><span class="pre">ContractSizeExceeded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.Deprecated"><code class="docutils literal notranslate"><span class="pre">Deprecated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.ECRecoverError"><code class="docutils literal notranslate"><span class="pre">ECRecoverError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.Ed25519VerifyInvalidInput"><code class="docutils literal notranslate"><span class="pre">Ed25519VerifyInvalidInput</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.AltBn128InvalidInput"><code class="docutils literal notranslate"><span class="pre">AltBn128InvalidInput</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.CodeDoesNotExist"><code class="docutils literal notranslate"><span class="pre">CodeDoesNotExist</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.PrepareError"><code class="docutils literal notranslate"><span class="pre">PrepareError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.WasmerCompileError"><code class="docutils literal notranslate"><span class="pre">WasmerCompileError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.UnsupportedCompiler"><code class="docutils literal notranslate"><span class="pre">UnsupportedCompiler</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.CacheErrorFieldless"><code class="docutils literal notranslate"><span class="pre">CacheErrorFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.SerializationError"><code class="docutils literal notranslate"><span class="pre">SerializationError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.FunctionCallErrorSerFieldless"><code class="docutils literal notranslate"><span class="pre">FunctionCallErrorSerFieldless</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.LinkError"><code class="docutils literal notranslate"><span class="pre">LinkError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.MethodResolveError"><code class="docutils literal notranslate"><span class="pre">MethodResolveError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#pyonear.error.vm.WasmTrap"><code class="docutils literal notranslate"><span class="pre">WasmTrap</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="core.html" class="btn btn-neutral float-right" title="core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../crypto.html" class="btn btn-neutral float-left" title="crypto" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

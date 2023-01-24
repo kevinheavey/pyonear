@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Examples &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api_reference/index.html" />
+    <link rel="prev" title="pyonear" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">pyonear</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-and-serialize-a-transaction">Create and serialize a transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serialize-and-deserialize-an-account">Serialize and deserialize an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#save-keys-to-a-file">Save keys to a file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verify-a-signature">Verify a signature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-actions-in-one-transaction">Multiple actions in one transaction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>Pyonear</cite> in its current form does intend to abstract away talking to a NEAR RPC server.
+Rather, it helps construct the data that you send to the RPC.</p>
+</div>
+<section id="create-and-serialize-a-transaction">
+<h2>Create and serialize a transaction<a class="headerlink" href="#create-and-serialize-a-transaction" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto</span> <span class="kn">import</span> <span class="n">InMemorySigner</span><span class="p">,</span> <span class="n">KeyType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto_hash</span> <span class="kn">import</span> <span class="n">CryptoHash</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.transaction</span> <span class="kn">import</span> <span class="n">Transaction</span><span class="p">,</span> <span class="n">TransferAction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer_id</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signer</span> <span class="o">=</span> <span class="n">InMemorySigner</span><span class="o">.</span><span class="n">from_random</span><span class="p">(</span><span class="n">signer_id</span><span class="p">,</span> <span class="n">KeyType</span><span class="o">.</span><span class="n">ED25519</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">public_key</span> <span class="o">=</span> <span class="n">signer</span><span class="o">.</span><span class="n">public_key</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nonce</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">receiver_id</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;bob.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block_hash</span> <span class="o">=</span> <span class="n">CryptoHash</span><span class="o">.</span><span class="n">default</span><span class="p">()</span> <span class="c1"># replace with a real blockhash</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransferAction</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transaction</span> <span class="o">=</span> <span class="n">Transaction</span><span class="p">(</span><span class="n">signer_id</span><span class="p">,</span> <span class="n">public_key</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">receiver_id</span><span class="p">,</span> <span class="n">block_hash</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">signer</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bytes</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+<span class="go">b&#39;\n\x00\x00\x00alice.near\x00\xeajP0\x86\xfb\x9cd\x8f\xd3\xcc_\x87\xd5\xc2_\xd4\xce\xb4,tR\xc1\xa65\x17\x91\xb9\xac\x07\x8e\x93\x00\x00\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00bob.near\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x03@B\x0f\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xbc\x8fo\x0f\x18\xf9\x91\x82\\{\xd1PU\xa7\xe5&lt;b*gq\x8d=\xc6o\x8c\xc7\x1dU\x8fE\xd4\xbe\x88\xba\x82\x9eql\x87\xc4n(\xf19\x14u\xa3\xcd\x9e\xcc\xd3Tv2U\xae(o\xf2\x03\xae\xca\xef\x0f&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transaction</span><span class="o">.</span><span class="n">to_base64</span><span class="p">()</span>
+<span class="go">&#39;CgAAAGFsaWNlLm5lYXIA++M56uPzUi8ezkHqJBLjc7ZCzJk88zoIpF5XkjUM13kAAAAAAAAAAAgAAABib2IubmVhcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAANAQg8AAAAAAAAAAAAAAAAAALK42W7t/vpUmDAgtChTUWEVvSE3cQZWRla8spN6KfNv9fWn16klROeblzH480b0a+NSL16YfnvWLnd2C9KLTQk=&#39;</span>
+</pre></div>
+</div>
+<p>This base64 string can be passed to the <a class="reference external" href="https://docs.near.org/api/rpc/transactions#send-transaction-async">broadcast_tx_*</a> methods
+of the RPC API.</p>
+</section>
+<section id="serialize-and-deserialize-an-account">
+<h2>Serialize and deserialize an account<a class="headerlink" href="#serialize-and-deserialize-an-account" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto_hash</span> <span class="kn">import</span> <span class="n">crypto_hash</span><span class="p">,</span> <span class="n">CryptoHash</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account</span> <span class="kn">import</span> <span class="n">Account</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">acc</span> <span class="o">=</span> <span class="n">Account</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">,</span> <span class="n">CryptoHash</span><span class="o">.</span><span class="n">default</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bytes_</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">crypto_hash</span><span class="p">(</span><span class="n">bytes_</span><span class="p">)</span>
+<span class="go">CryptoHash(</span>
+<span class="go">    `EVk5UaxBe8LQ8r8iD5EAxVBs6TJcMDKqyH7PBuho6bBJ`,</span>
+<span class="go">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">bytes_</span><span class="p">)</span> <span class="o">==</span> <span class="n">acc</span>
+</pre></div>
+</div>
+</section>
+<section id="save-keys-to-a-file">
+<h2>Save keys to a file<a class="headerlink" href="#save-keys-to-a-file" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto</span> <span class="kn">import</span> <span class="n">ED25519SecretKey</span><span class="p">,</span> <span class="n">KeyFile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">account_id</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">ED25519SecretKey</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span><span class="s2">&quot;ed25519:3D4YudUahN1nawWogh8pAKSj92sUNMdbZGjn7kERKzYoTy8tnFQuwoGUC51DowKqorvkr2pytJSnwuSbsNVfqygr&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">keyfile</span> <span class="o">=</span> <span class="n">KeyFile</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">secret_key</span><span class="o">.</span><span class="n">public_key</span><span class="p">(),</span> <span class="n">secret_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">keyfile</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="s2">&quot;tmp.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-a-signature">
+<h2>Verify a signature<a class="headerlink" href="#verify-a-signature" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto</span> <span class="kn">import</span> <span class="n">ED25519SecretKey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">ED25519SecretKey</span><span class="o">.</span><span class="n">from_random</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">public_key</span> <span class="o">=</span> <span class="n">secret_key</span><span class="o">.</span><span class="n">public_key</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signature</span> <span class="o">=</span> <span class="n">secret_key</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">signature</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">public_key</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signature</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">public_key</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+<section id="multiple-actions-in-one-transaction">
+<h2>Multiple actions in one transaction<a class="headerlink" href="#multiple-actions-in-one-transaction" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto</span> <span class="kn">import</span> <span class="n">ED25519PublicKey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.crypto_hash</span> <span class="kn">import</span> <span class="n">CryptoHash</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.transaction</span> <span class="kn">import</span> <span class="n">Transaction</span><span class="p">,</span> <span class="n">CreateAccountAction</span><span class="p">,</span> <span class="n">DeployContractAction</span><span class="p">,</span> <span class="n">FunctionCallAction</span><span class="p">,</span> <span class="n">TransferAction</span><span class="p">,</span> <span class="n">StakeAction</span><span class="p">,</span> <span class="n">AddKeyAction</span><span class="p">,</span> <span class="n">DeleteKeyAction</span><span class="p">,</span> <span class="n">DeleteAccountAction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account</span> <span class="kn">import</span> <span class="n">AccessKey</span><span class="p">,</span> <span class="n">FunctionCallPermission</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">public_key</span> <span class="o">=</span> <span class="n">ED25519PublicKey</span><span class="o">.</span><span class="n">from_str</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;22skMptHjFWNyuEWY22ftn2AbLPSYpmYwGJRGwpNHbTV&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transaction</span> <span class="o">=</span> <span class="n">Transaction</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">signer_id</span><span class="o">=</span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;test.near&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">public_key</span><span class="o">=</span><span class="n">public_key</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">nonce</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">receiver_id</span><span class="o">=</span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">block_hash</span><span class="o">=</span><span class="n">CryptoHash</span><span class="o">.</span><span class="n">default</span><span class="p">(),</span>
+<span class="gp">... </span>    <span class="n">actions</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="n">CreateAccountAction</span><span class="p">(),</span>
+<span class="gp">... </span>        <span class="n">DeployContractAction</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">FunctionCallAction</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">method_name</span><span class="o">=</span><span class="s2">&quot;qqq&quot;</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="n">gas</span><span class="o">=</span><span class="mi">1_000</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">deposit</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">),</span>
+<span class="gp">... </span>        <span class="n">TransferAction</span><span class="p">(</span><span class="n">deposit</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">StakeAction</span><span class="p">(</span><span class="n">public_key</span><span class="o">=</span><span class="n">public_key</span><span class="p">,</span> <span class="n">stake</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">AddKeyAction</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">public_key</span><span class="o">=</span><span class="n">public_key</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">access_key</span><span class="o">=</span><span class="n">AccessKey</span><span class="p">(</span>
+<span class="gp">... </span>                <span class="n">nonce</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">permission</span><span class="o">=</span><span class="n">FunctionCallPermission</span><span class="p">(</span>
+<span class="gp">... </span>                    <span class="n">allowance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="n">receiver_id</span><span class="o">=</span><span class="s2">&quot;zzz&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="n">method_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;www&quot;</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">),</span>
+<span class="gp">... </span>            <span class="p">),</span>
+<span class="gp">... </span>        <span class="p">),</span>
+<span class="gp">... </span>        <span class="n">DeleteKeyAction</span><span class="p">(</span><span class="n">public_key</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">DeleteAccountAction</span><span class="p">(</span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="api_reference/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="pyonear" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

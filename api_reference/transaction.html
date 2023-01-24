@@ -1,0 +1,1522 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>transaction &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="merkle" href="merkle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account_id.html">account_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account.html">account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto.html">crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error/index.html">error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle.html">merkle</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">transaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.CreateAccountAction"><code class="docutils literal notranslate"><span class="pre">CreateAccountAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.CreateAccountAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">CreateAccountAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.CreateAccountAction.from_json"><code class="docutils literal notranslate"><span class="pre">CreateAccountAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.CreateAccountAction.to_json"><code class="docutils literal notranslate"><span class="pre">CreateAccountAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.DeployContractAction"><code class="docutils literal notranslate"><span class="pre">DeployContractAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeployContractAction.code"><code class="docutils literal notranslate"><span class="pre">DeployContractAction.code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeployContractAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">DeployContractAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeployContractAction.from_json"><code class="docutils literal notranslate"><span class="pre">DeployContractAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeployContractAction.to_json"><code class="docutils literal notranslate"><span class="pre">DeployContractAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.args"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.args</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.deposit"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.deposit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.from_json"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.gas"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.gas</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.method_name"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.method_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.FunctionCallAction.to_json"><code class="docutils literal notranslate"><span class="pre">FunctionCallAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.TransferAction"><code class="docutils literal notranslate"><span class="pre">TransferAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.TransferAction.deposit"><code class="docutils literal notranslate"><span class="pre">TransferAction.deposit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.TransferAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">TransferAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.TransferAction.from_json"><code class="docutils literal notranslate"><span class="pre">TransferAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.TransferAction.to_json"><code class="docutils literal notranslate"><span class="pre">TransferAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.StakeAction"><code class="docutils literal notranslate"><span class="pre">StakeAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.StakeAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">StakeAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.StakeAction.from_json"><code class="docutils literal notranslate"><span class="pre">StakeAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.StakeAction.public_key"><code class="docutils literal notranslate"><span class="pre">StakeAction.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.StakeAction.stake"><code class="docutils literal notranslate"><span class="pre">StakeAction.stake</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.StakeAction.to_json"><code class="docutils literal notranslate"><span class="pre">StakeAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.AddKeyAction"><code class="docutils literal notranslate"><span class="pre">AddKeyAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.AddKeyAction.access_key"><code class="docutils literal notranslate"><span class="pre">AddKeyAction.access_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.AddKeyAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">AddKeyAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.AddKeyAction.from_json"><code class="docutils literal notranslate"><span class="pre">AddKeyAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.AddKeyAction.public_key"><code class="docutils literal notranslate"><span class="pre">AddKeyAction.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.AddKeyAction.to_json"><code class="docutils literal notranslate"><span class="pre">AddKeyAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.DeleteKeyAction"><code class="docutils literal notranslate"><span class="pre">DeleteKeyAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteKeyAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">DeleteKeyAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteKeyAction.from_json"><code class="docutils literal notranslate"><span class="pre">DeleteKeyAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteKeyAction.public_key"><code class="docutils literal notranslate"><span class="pre">DeleteKeyAction.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteKeyAction.to_json"><code class="docutils literal notranslate"><span class="pre">DeleteKeyAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.DeleteAccountAction"><code class="docutils literal notranslate"><span class="pre">DeleteAccountAction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteAccountAction.beneficiary_id"><code class="docutils literal notranslate"><span class="pre">DeleteAccountAction.beneficiary_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteAccountAction.from_bytes"><code class="docutils literal notranslate"><span class="pre">DeleteAccountAction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteAccountAction.from_json"><code class="docutils literal notranslate"><span class="pre">DeleteAccountAction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.DeleteAccountAction.to_json"><code class="docutils literal notranslate"><span class="pre">DeleteAccountAction.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.verify_transaction_signature"><code class="docutils literal notranslate"><span class="pre">verify_transaction_signature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ExecutionStatusFieldless"><code class="docutils literal notranslate"><span class="pre">ExecutionStatusFieldless</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionStatusFieldless.Unknown"><code class="docutils literal notranslate"><span class="pre">ExecutionStatusFieldless.Unknown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.PartialExecutionStatusFieldless"><code class="docutils literal notranslate"><span class="pre">PartialExecutionStatusFieldless</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.PartialExecutionStatusFieldless.Failure"><code class="docutils literal notranslate"><span class="pre">PartialExecutionStatusFieldless.Failure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.PartialExecutionStatusFieldless.Unknown"><code class="docutils literal notranslate"><span class="pre">PartialExecutionStatusFieldless.Unknown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ExecutionMetadataFieldless"><code class="docutils literal notranslate"><span class="pre">ExecutionMetadataFieldless</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionMetadataFieldless.V1"><code class="docutils literal notranslate"><span class="pre">ExecutionMetadataFieldless.V1</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ProfileData"><code class="docutils literal notranslate"><span class="pre">ProfileData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.action_gas"><code class="docutils literal notranslate"><span class="pre">ProfileData.action_gas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.add_action_cost"><code class="docutils literal notranslate"><span class="pre">ProfileData.add_action_cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.add_ext_cost"><code class="docutils literal notranslate"><span class="pre">ProfileData.add_ext_cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.compute_wasm_instruction_cost"><code class="docutils literal notranslate"><span class="pre">ProfileData.compute_wasm_instruction_cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.from_bytes"><code class="docutils literal notranslate"><span class="pre">ProfileData.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.get_action_cost"><code class="docutils literal notranslate"><span class="pre">ProfileData.get_action_cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.get_ext_cost"><code class="docutils literal notranslate"><span class="pre">ProfileData.get_ext_cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.host_gas"><code class="docutils literal notranslate"><span class="pre">ProfileData.host_gas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ProfileData.merge"><code class="docutils literal notranslate"><span class="pre">ProfileData.merge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.Transaction"><code class="docutils literal notranslate"><span class="pre">Transaction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.actions"><code class="docutils literal notranslate"><span class="pre">Transaction.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.add_key"><code class="docutils literal notranslate"><span class="pre">Transaction.add_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.block_hash"><code class="docutils literal notranslate"><span class="pre">Transaction.block_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.create_account"><code class="docutils literal notranslate"><span class="pre">Transaction.create_account()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.delete_account"><code class="docutils literal notranslate"><span class="pre">Transaction.delete_account()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.delete_key"><code class="docutils literal notranslate"><span class="pre">Transaction.delete_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.deploy_contract"><code class="docutils literal notranslate"><span class="pre">Transaction.deploy_contract()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.from_bytes"><code class="docutils literal notranslate"><span class="pre">Transaction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.from_json"><code class="docutils literal notranslate"><span class="pre">Transaction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.function_call"><code class="docutils literal notranslate"><span class="pre">Transaction.function_call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.get_hash_and_size"><code class="docutils literal notranslate"><span class="pre">Transaction.get_hash_and_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.nonce"><code class="docutils literal notranslate"><span class="pre">Transaction.nonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.public_key"><code class="docutils literal notranslate"><span class="pre">Transaction.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.receiver_id"><code class="docutils literal notranslate"><span class="pre">Transaction.receiver_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.sign"><code class="docutils literal notranslate"><span class="pre">Transaction.sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.signer_id"><code class="docutils literal notranslate"><span class="pre">Transaction.signer_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.stake"><code class="docutils literal notranslate"><span class="pre">Transaction.stake()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.to_json"><code class="docutils literal notranslate"><span class="pre">Transaction.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.Transaction.transfer"><code class="docutils literal notranslate"><span class="pre">Transaction.transfer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.SignedTransaction"><code class="docutils literal notranslate"><span class="pre">SignedTransaction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.from_base64"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.from_base64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.from_bytes"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.from_json"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.hash"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.signature"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.signature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.size"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.to_base64"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.to_base64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.to_json"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.SignedTransaction.transaction"><code class="docutils literal notranslate"><span class="pre">SignedTransaction.transaction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.executor_id"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.executor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.from_bytes"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.gas_burnt"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.gas_burnt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.logs"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.logs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.metadata"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.receipt_ids"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.receipt_ids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.status"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome.tokens_burnt"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcome.tokens_burnt</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithId</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId.from_bytes"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithId.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId.id"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithId.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId.outcome"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithId.outcome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId.to_hashes"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithId.to_hashes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.block_hash"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof.block_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.from_bytes"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.id"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.outcome_with_id"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof.outcome_with_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.proof"><code class="docutils literal notranslate"><span class="pre">ExecutionOutcomeWithIdAndProof.proof</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>transaction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/transaction.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-pyonear.transaction">
+<span id="transaction"></span><h1>transaction<a class="headerlink" href="#module-pyonear.transaction" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.CreateAccountAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateAccountAction</span></span><a class="headerlink" href="#pyonear.transaction.CreateAccountAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create account action</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.CreateAccountAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.CreateAccountAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.CreateAccountAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.CreateAccountAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.CreateAccountAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.CreateAccountAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.DeployContractAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeployContractAction</span></span><a class="headerlink" href="#pyonear.transaction.DeployContractAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deploy contract action</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.DeployContractAction.code">
+<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#pyonear.transaction.DeployContractAction.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>WebAssembly binary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeployContractAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeployContractAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeployContractAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeployContractAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeployContractAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeployContractAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FunctionCallAction</span></span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arguments to pass to method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.deposit">
+<span class="sig-name descname"><span class="pre">deposit</span></span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.deposit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of NEAR (in yoctoNEAR) to send together with the call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.gas">
+<span class="sig-name descname"><span class="pre">gas</span></span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.gas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Max amount of gas that method call can use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.method_name">
+<span class="sig-name descname"><span class="pre">method_name</span></span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.method_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the method to call</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.FunctionCallAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.FunctionCallAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.TransferAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TransferAction</span></span><a class="headerlink" href="#pyonear.transaction.TransferAction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.TransferAction.deposit">
+<span class="sig-name descname"><span class="pre">deposit</span></span><a class="headerlink" href="#pyonear.transaction.TransferAction.deposit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount to transfer, in yoctoNEAR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.TransferAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.TransferAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.TransferAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.TransferAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.TransferAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.TransferAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StakeAction</span></span><a class="headerlink" href="#pyonear.transaction.StakeAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>An action which stakes signer_id tokens and sets up validator public key</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.StakeAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.StakeAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.transaction.StakeAction.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validator key which will be used to sign transactions on behalf of signer_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction.stake">
+<span class="sig-name descname"><span class="pre">stake</span></span><a class="headerlink" href="#pyonear.transaction.StakeAction.stake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Amount of tokens to stake.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.StakeAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.StakeAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddKeyAction</span></span><a class="headerlink" href="#pyonear.transaction.AddKeyAction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction.access_key">
+<span class="sig-name descname"><span class="pre">access_key</span></span><a class="headerlink" href="#pyonear.transaction.AddKeyAction.access_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>An access key with the permission.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account.html#pyonear.account.AccessKey" title="pyonear.account.AccessKey">AccessKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.AddKeyAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.AddKeyAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.transaction.AddKeyAction.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>A public key which will be associated with an access_key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.AddKeyAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.AddKeyAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteKeyAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteKeyAction</span></span><a class="headerlink" href="#pyonear.transaction.DeleteKeyAction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteKeyAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteKeyAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteKeyAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteKeyAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteKeyAction.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.transaction.DeleteKeyAction.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>A public key associated with the access_key to be deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteKeyAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteKeyAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteAccountAction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteAccountAction</span></span><a class="headerlink" href="#pyonear.transaction.DeleteAccountAction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteAccountAction.beneficiary_id">
+<span class="sig-name descname"><span class="pre">beneficiary_id</span></span><a class="headerlink" href="#pyonear.transaction.DeleteAccountAction.beneficiary_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the ID of the account to be deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteAccountAction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteAccountAction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteAccountAction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteAccountAction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.DeleteAccountAction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.DeleteAccountAction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyonear.transaction.verify_transaction_signature">
+<span class="sig-name descname"><span class="pre">verify_transaction_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.verify_transaction_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionStatusFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExecutionStatusFieldless</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionStatusFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionStatusFieldless.Unknown">
+<span class="sig-name descname"><span class="pre">Unknown</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExecutionStatusFieldless.Unknown</span></em><a class="headerlink" href="#pyonear.transaction.ExecutionStatusFieldless.Unknown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.PartialExecutionStatusFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PartialExecutionStatusFieldless</span></span><a class="headerlink" href="#pyonear.transaction.PartialExecutionStatusFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.PartialExecutionStatusFieldless.Failure">
+<span class="sig-name descname"><span class="pre">Failure</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PartialExecutionStatusFieldless.Failure</span></em><a class="headerlink" href="#pyonear.transaction.PartialExecutionStatusFieldless.Failure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.PartialExecutionStatusFieldless.Unknown">
+<span class="sig-name descname"><span class="pre">Unknown</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PartialExecutionStatusFieldless.Unknown</span></em><a class="headerlink" href="#pyonear.transaction.PartialExecutionStatusFieldless.Unknown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionMetadataFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExecutionMetadataFieldless</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionMetadataFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionMetadataFieldless.V1">
+<span class="sig-name descname"><span class="pre">V1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExecutionMetadataFieldless.V1</span></em><a class="headerlink" href="#pyonear.transaction.ExecutionMetadataFieldless.V1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ProfileData</span></span><a class="headerlink" href="#pyonear.transaction.ProfileData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Profile of gas consumption.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.action_gas">
+<span class="sig-name descname"><span class="pre">action_gas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.action_gas" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas">https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.add_action_cost">
+<span class="sig-name descname"><span class="pre">add_action_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.add_action_cost" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<a class="reference internal" href="config.html#pyonear.config.ActionCosts" title="pyonear.config.ActionCosts"><em>ActionCosts</em></a>) – </p></li>
+<li><p><strong>value</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.add_ext_cost">
+<span class="sig-name descname"><span class="pre">add_ext_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.add_ext_cost" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ext</strong> (<a class="reference internal" href="config.html#pyonear.config.ExtCosts" title="pyonear.config.ExtCosts"><em>ExtCosts</em></a>) – </p></li>
+<li><p><strong>value</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.compute_wasm_instruction_cost">
+<span class="sig-name descname"><span class="pre">compute_wasm_instruction_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_gas_burnt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.compute_wasm_instruction_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>WasmInstruction is the only cost we don’t explicitly account for.
+Instead, we compute it at the end of contract call as the difference
+between total gas burnt and what we’ve explicitly accounted for in the
+profile.</p>
+<p>This is because WasmInstruction is the hottest cost and is implemented
+with the help on the VM side, so we don’t want to have profiling logic
+there both for simplicity and efficiency reasons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>total_gas_burnt</strong> (<em>Sequence</em><em>[</em><em>bytes</em><em>]</em>) – The total gas burnt by the contract call.</p></li>
+<li><p><strong>program_id</strong> (<em>Pubkey</em>) – The program ID.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the WASM instruction cost.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.get_action_cost">
+<span class="sig-name descname"><span class="pre">get_action_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.get_action_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_action_cost">https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_action_cost</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<a class="reference internal" href="config.html#pyonear.config.ActionCosts" title="pyonear.config.ActionCosts"><em>ActionCosts</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.get_ext_cost">
+<span class="sig-name descname"><span class="pre">get_ext_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.get_ext_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost">https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ext</strong> (<a class="reference internal" href="config.html#pyonear.config.ExtCosts" title="pyonear.config.ExtCosts"><em>ExtCosts</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.host_gas">
+<span class="sig-name descname"><span class="pre">host_gas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.host_gas" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas">https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ProfileData.merge">
+<span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ProfileData.merge" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#pyonear.transaction.ProfileData" title="pyonear.transaction.ProfileData"><em>ProfileData</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Transaction</span></span><a class="headerlink" href="#pyonear.transaction.Transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">Transaction</span></code> is a collection of Actions that describe what should be done at the destination (the receiver account).</p>
+<p>See <a class="reference external" href="https://docs.near.org/concepts/basics/transactions/overview">https://docs.near.org/concepts/basics/transactions/overview</a> for more.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signer_id</strong> (<a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId"><em>AccountId</em></a>) – The account on whose behalf the transaciton is signed.</p></li>
+<li><p><strong>public_key</strong> (<em>PublicKey</em>) – A public key of the access key which was used to sign an account.</p></li>
+<li><p><strong>nonce</strong> (<em>int</em>) – Used to determine order of transaction in the pool. It increments for a combination of <cite>signer_id</cite> and <cite>public_key</cite>,</p></li>
+<li><p><strong>receiver_id</strong> (<a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId"><em>AccountId</em></a>) – Receiver account for this transaction.</p></li>
+<li><p><strong>block_hash</strong> (<a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash"><em>CryptoHash</em></a>) – The hash of the block in the blockchain on top of which the given transaction is valid.</p></li>
+<li><p><strong>actions</strong> (<em>list</em><em>[</em><em>Action</em><em>]</em>) – A list of actions to be applied.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.actions">
+<span class="sig-name descname"><span class="pre">actions</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of actions to be applied</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[Action]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.add_key">
+<span class="sig-name descname"><span class="pre">add_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.add_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add an <code class="docutils literal notranslate"><span class="pre">AddKey</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>public_key</strong> (<em>PublicKey</em>) – A public key which will be associated with an access_key.</p></li>
+<li><p><strong>access_key</strong> (<a class="reference internal" href="account.html#pyonear.account.AccessKey" title="pyonear.account.AccessKey"><em>AccessKey</em></a>) – An access key with the permission.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.block_hash">
+<span class="sig-name descname"><span class="pre">block_hash</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.block_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The hash of the block in the blockchain on top of which the given transaction is valid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.create_account">
+<span class="sig-name descname"><span class="pre">create_account</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.create_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">CreateAccount</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the transaction object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.delete_account">
+<span class="sig-name descname"><span class="pre">delete_account</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beneficiary_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.delete_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">DeleteAccount</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>benficiary_id</strong> (<a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId"><em>AccountId</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.delete_key">
+<span class="sig-name descname"><span class="pre">delete_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.delete_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">DeleteKey</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>public_key</strong> (<em>PublicKey</em>) – A public key associated with the access_key to be deleted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.deploy_contract">
+<span class="sig-name descname"><span class="pre">deploy_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.deploy_contract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">DeployContract</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>code</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – The webassembly binary.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.function_call">
+<span class="sig-name descname"><span class="pre">function_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deposit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.function_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">FunctionCall</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method_name</strong> (<em>str</em>) – The name of the method to call.</p></li>
+<li><p><strong>args</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – The arguments.</p></li>
+<li><p><strong>gas</strong> (<em>int</em>) – Max amount of gas that method call can use.</p></li>
+<li><p><strong>deposit</strong> (<em>int</em>) – Amount of NEAR (in yoctoNEAR) to send together with the call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.get_hash_and_size">
+<span class="sig-name descname"><span class="pre">get_hash_and_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.get_hash_and_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes a hash of the transaction for signing and size of serialized transaction</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.nonce">
+<span class="sig-name descname"><span class="pre">nonce</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.nonce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nonce is used to determine order of transaction in the pool.
+It increments for a combination of <cite>signer_id</cite> and <cite>public_key</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>A public key of the access key which was used to sign an account.
+Access key holds permissions for calling certain kinds of actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.receiver_id">
+<span class="sig-name descname"><span class="pre">receiver_id</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.receiver_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receiver account for this transaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.sign">
+<span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sign this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>signer</strong> (<em>Signer</em>) – The transasction signer.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The signed transaction.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.SignedTransaction" title="pyonear.transaction.SignedTransaction">SignedTransaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.signer_id">
+<span class="sig-name descname"><span class="pre">signer_id</span></span><a class="headerlink" href="#pyonear.transaction.Transaction.signer_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The account on whose behalf the transaction is signed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.stake">
+<span class="sig-name descname"><span class="pre">stake</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.stake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">Stake</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stake</strong> (<em>int</em>) – Amount of tokens to stake.</p></li>
+<li><p><strong>public_key</strong> (<em>PublicKey</em>) – Validator key which will be used to sign transactions on behalf of signer_id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.Transaction.transfer">
+<span class="sig-name descname"><span class="pre">transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deposit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.Transaction.transfer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutably add a <code class="docutils literal notranslate"><span class="pre">Transfer</span></code> action to this transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>deposit</strong> (<em>int</em>) – Amount of NEAR (in yoctoNEAR) to send.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the transaction object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SignedTransaction</span></span><a class="headerlink" href="#pyonear.transaction.SignedTransaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">SignedTransction</span></code> is the result of calling <code class="docutils literal notranslate"><span class="pre">Transaction.sign</span></code>.
+The data inside a <code class="docutils literal notranslate"><span class="pre">SignedTransaction</span></code> cannot be changed.
+If you have a <code class="docutils literal notranslate"><span class="pre">SignedTransction</span></code> and you want to make some changes,
+use <code class="docutils literal notranslate"><span class="pre">my_signed_tx.transaction</span></code> to retrieve an unsigned transaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signature</strong> (<em>Signature</em>) – The transaction signature.</p></li>
+<li><p><strong>transaction</strong> (<a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction"><em>Transaction</em></a>) – The unsigned transaction.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.from_base64">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.from_base64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build to a base64 string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – The base64-encoded transaction.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SignedTransaction</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.hash">
+<span class="sig-name descname"><span class="pre">hash</span></span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The hash of the transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.signature">
+<span class="sig-name descname"><span class="pre">signature</span></span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The transaction signature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Signature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.size">
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the serialized transaction in bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.to_base64">
+<span class="sig-name descname"><span class="pre">to_base64</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.to_base64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a base64 string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.SignedTransaction.transaction">
+<span class="sig-name descname"><span class="pre">transaction</span></span><a class="headerlink" href="#pyonear.transaction.SignedTransaction.transaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unsigned transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.Transaction" title="pyonear.transaction.Transaction">Transaction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExecutionOutcome</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution outcome for one signed transaction or one receipt.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.executor_id">
+<span class="sig-name descname"><span class="pre">executor_id</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.executor_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the account on which the execution happens. For transaction this is signer_id,
+for receipt this is receiver_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.gas_burnt">
+<span class="sig-name descname"><span class="pre">gas_burnt</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.gas_burnt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of the gas burnt by the given transaction or receipt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.logs">
+<span class="sig-name descname"><span class="pre">logs</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.logs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs from this transaction or receipt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution metadata, versioned</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ExecutionMetadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.receipt_ids">
+<span class="sig-name descname"><span class="pre">receipt_ids</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.receipt_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receipt IDs generated by this transaction or receipt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution status. Contains the result in case of successful execution.
+NOTE: Should be the latest field since it contains unparsable by light client
+ExecutionStatus::Failure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ExecutionStatus</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcome.tokens_burnt">
+<span class="sig-name descname"><span class="pre">tokens_burnt</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcome.tokens_burnt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The amount of tokens burnt corresponding to the burnt gas amount.
+This value doesn’t always equal to the <code class="docutils literal notranslate"><span class="pre">gas_burnt</span></code> multiplied by the gas price, because
+the prepaid gas price might be lower than the actual gas price and it creates a deficit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExecutionOutcomeWithId</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution outcome with the identifier.
+For a signed transaction, the ID is the hash of the transaction.
+For a receipt, the ID is the receipt ID.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithId.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithId.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The transaction hash or the receipt ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithId.outcome">
+<span class="sig-name descname"><span class="pre">outcome</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithId.outcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should be the latest field since contains unparsable by light client ExecutionStatus::Failure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.ExecutionOutcome" title="pyonear.transaction.ExecutionOutcome">ExecutionOutcome</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithId.to_hashes">
+<span class="sig-name descname"><span class="pre">to_hashes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithId.to_hashes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns:
+list[CryptoHash]</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExecutionOutcomeWithIdAndProof</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution outcome with path from it to the outcome root and ID.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof.block_hash">
+<span class="sig-name descname"><span class="pre">block_hash</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.block_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The block hash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof.id">
+<span class="sig-name descname"><span class="pre">id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the outcome ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>outcome ID.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="crypto_hash.html#pyonear.crypto_hash.CryptoHash" title="pyonear.crypto_hash.CryptoHash">CryptoHash</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof.outcome_with_id">
+<span class="sig-name descname"><span class="pre">outcome_with_id</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.outcome_with_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should be the latest field since contains unparsable by light client ExecutionStatus::Failure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.transaction.ExecutionOutcomeWithId" title="pyonear.transaction.ExecutionOutcomeWithId">ExecutionOutcomeWithId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.transaction.ExecutionOutcomeWithIdAndProof.proof">
+<span class="sig-name descname"><span class="pre">proof</span></span><a class="headerlink" href="#pyonear.transaction.ExecutionOutcomeWithIdAndProof.proof" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path from the execution outcome to the outcome root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="merkle.html#pyonear.merkle.MerklePathItem" title="pyonear.merkle.MerklePathItem">MerklePathItem</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="merkle.html" class="btn btn-neutral float-left" title="merkle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>crypto &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="error" href="error/index.html" />
+    <link rel="prev" title="crypto_hash" href="crypto_hash.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account_id.html">account_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account.html">account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">crypto</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.LENGTH"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.empty"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.from_bytes"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.from_json"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.from_seed"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.from_seed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.from_str"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey.to_json"><code class="docutils literal notranslate"><span class="pre">ED25519PublicKey.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.LENGTH"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.empty"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.from_bytes"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.from_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.from_str"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey.to_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1PublicKey.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.LENGTH"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.from_bytes"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.from_json"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.from_random"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.from_random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.from_seed"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.from_seed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.from_str"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.public_key"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.public_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.sign"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519SecretKey.to_json"><code class="docutils literal notranslate"><span class="pre">ED25519SecretKey.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.LENGTH"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.from_bytes"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.from_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.from_random"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.from_random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.from_seed"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.from_seed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.from_str"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.public_key"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.public_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.sign"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1SecretKey.to_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1SecretKey.to_json()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.ED25519Signature"><code class="docutils literal notranslate"><span class="pre">ED25519Signature</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.LENGTH"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.empty"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.from_bytes"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.from_json"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.from_str"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.to_json"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.ED25519Signature.verify"><code class="docutils literal notranslate"><span class="pre">ED25519Signature.verify()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.LENGTH"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.LENGTH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.check_signature_values"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.check_signature_values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.empty"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.from_bytes"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.from_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.from_str"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.from_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.recover"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.recover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.to_json"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.Secp256K1Signature.verify"><code class="docutils literal notranslate"><span class="pre">Secp256K1Signature.verify()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.EmptySigner"><code class="docutils literal notranslate"><span class="pre">EmptySigner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.EmptySigner.public_key"><code class="docutils literal notranslate"><span class="pre">EmptySigner.public_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.EmptySigner.sign"><code class="docutils literal notranslate"><span class="pre">EmptySigner.sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.EmptySigner.verify"><code class="docutils literal notranslate"><span class="pre">EmptySigner.verify()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.InMemorySigner"><code class="docutils literal notranslate"><span class="pre">InMemorySigner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.account_id"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.account_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.compute_vrf_with_proof"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.compute_vrf_with_proof()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_bytes"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_file"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_json"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_random"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_secret_key"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_secret_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.from_seed"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.from_seed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.public_key"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.secret_key"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.secret_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.sign"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.to_json"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.verify"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.verify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.InMemorySigner.write_to_file"><code class="docutils literal notranslate"><span class="pre">InMemorySigner.write_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.KeyType"><code class="docutils literal notranslate"><span class="pre">KeyType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyType.ED25519"><code class="docutils literal notranslate"><span class="pre">KeyType.ED25519</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyType.SECP256K1"><code class="docutils literal notranslate"><span class="pre">KeyType.SECP256K1</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.crypto.KeyFile"><code class="docutils literal notranslate"><span class="pre">KeyFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.account_id"><code class="docutils literal notranslate"><span class="pre">KeyFile.account_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.from_bytes"><code class="docutils literal notranslate"><span class="pre">KeyFile.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.from_file"><code class="docutils literal notranslate"><span class="pre">KeyFile.from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.from_json"><code class="docutils literal notranslate"><span class="pre">KeyFile.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.public_key"><code class="docutils literal notranslate"><span class="pre">KeyFile.public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.secret_key"><code class="docutils literal notranslate"><span class="pre">KeyFile.secret_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.to_json"><code class="docutils literal notranslate"><span class="pre">KeyFile.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.crypto.KeyFile.write_to_file"><code class="docutils literal notranslate"><span class="pre">KeyFile.write_to_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="error/index.html">error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle.html">merkle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transaction.html">transaction</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>crypto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/crypto.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-pyonear.crypto">
+<span id="crypto"></span><h1>crypto<a class="headerlink" href="#module-pyonear.crypto" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ED25519PublicKey</span></span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty pubkey.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.from_seed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.from_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from seed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ED25519PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519PublicKey.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519PublicKey.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Secp256K1PublicKey</span></span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty pubkey.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1PublicKey.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1PublicKey.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ED25519SecretKey</span></span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.from_random">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.from_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly generate the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.from_seed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.from_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from seed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ED25519SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the public key of this secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The public key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey" title="pyonear.crypto.ED25519PublicKey">ED25519PublicKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.sign">
+<span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sign a message with this secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – The message to sign.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns</dt><dd><p>ED25519Signature: the message signature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519SecretKey.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519SecretKey.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Secp256K1SecretKey</span></span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.from_random">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.from_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly generate the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.from_seed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.from_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from seed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Secp256K1SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the public key of this secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The public key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey" title="pyonear.crypto.Secp256K1PublicKey">Secp256K1PublicKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.sign">
+<span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sign a message with this secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – The message to sign.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns</dt><dd><p>Secp256K1Signature: the message signature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1SecretKey.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1SecretKey.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ED25519Signature</span></span><a class="headerlink" href="#pyonear.crypto.ED25519Signature" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#pyonear.crypto.ED25519Signature.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty signature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519Signature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ED25519Signature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.ED25519Signature.verify">
+<span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.ED25519Signature.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that this signature comes from signing the data with given public key.
+Also if public key isn’t on the curve returns <cite>false</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>bytes</em>) – the unsigned message.</p></li>
+<li><p><strong>public_key</strong> (<a class="reference internal" href="#pyonear.crypto.ED25519PublicKey" title="pyonear.crypto.ED25519PublicKey"><em>ED25519PublicKey</em></a>) – The public key of the signer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signature verification result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Secp256K1Signature</span></span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.LENGTH">
+<span class="sig-name descname"><span class="pre">LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">65</span></em><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.check_signature_values">
+<span class="sig-name descname"><span class="pre">check_signature_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reject_upper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.check_signature_values" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>reject_upper</strong> – bool</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty signature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1Signature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.from_str">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.from_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse from a string.</p>
+<p>s (str): The string to parse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Secp256K1Signature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.recover">
+<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.recover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recover the pubkey of the given message’s signer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – the unsigned message.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The signer’s pubkey.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey" title="pyonear.crypto.Secp256K1PublicKey">Secp256K1PublicKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.Secp256K1Signature.verify">
+<span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.Secp256K1Signature.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that this signature comes from signing the data with given public key.
+Also if public key isn’t on the curve returns <cite>false</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>bytes</em>) – the unsigned message.</p></li>
+<li><p><strong>public_key</strong> (<a class="reference internal" href="#pyonear.crypto.Secp256K1PublicKey" title="pyonear.crypto.Secp256K1PublicKey"><em>Secp256K1PublicKey</em></a>) – The public key of the signer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signature verification result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.EmptySigner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EmptySigner</span></span><a class="headerlink" href="#pyonear.crypto.EmptySigner" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.EmptySigner.public_key">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.EmptySigner.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an empty public key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>empty pubkey.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyonear.crypto.ED25519PublicKey" title="pyonear.crypto.ED25519PublicKey">ED25519PublicKey</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.EmptySigner.sign">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.EmptySigner.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an empty signature.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>empty signature.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyonear.crypto.ED25519Signature" title="pyonear.crypto.ED25519Signature">ED25519Signature</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.EmptySigner.verify">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.EmptySigner.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that this signature comes from signing the data with this signer’s public key.
+Also if public key isn’t on the curve returns <cite>false</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>bytes</em>) – the unsigned message.</p></li>
+<li><p><strong>signature</strong> (<em>Signature</em>) – The signature.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signature verification result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InMemorySigner</span></span><a class="headerlink" href="#pyonear.crypto.InMemorySigner" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.account_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the signer’s account ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.compute_vrf_with_proof">
+<span class="sig-name descname"><span class="pre">compute_vrf_with_proof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.compute_vrf_with_proof" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://docs.rs/near-crypto/latest/near_crypto/trait.Signer.html#tymethod.compute_vrf_with_proof">https://docs.rs/near-crypto/latest/near_crypto/trait.Signer.html#tymethod.compute_vrf_with_proof</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[list[int], list[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_file">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the signer from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>pathlib.Path</em>) – The file to read.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>InMemorySigner</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_random">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly generate the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>InMemorySigner</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_secret_key">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_secret_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the signer from a secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account_id</strong> (<a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId"><em>AccountId</em></a>) – The signer’s account ID.</p></li>
+<li><p><strong>secret_key</strong> (<em>SecretKey</em>) – The signer’s secret key.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.from_seed">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.from_seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from seed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>account_id</strong> (<a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId"><em>AccountId</em></a>) – the signer’s account ID.</p></li>
+<li><p><strong>key_type</strong> (<a class="reference internal" href="#pyonear.crypto.KeyType" title="pyonear.crypto.KeyType"><em>KeyType</em></a>) – </p></li>
+<li><p><strong>seed</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>InMemorySigner</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>the signer’s public key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.secret_key">
+<span class="sig-name descname"><span class="pre">secret_key</span></span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>the signer’s secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.sign">
+<span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sign a message with this signer’s secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em><em> | </em><em>Sequence</em><em>[</em><em>int</em><em>]</em>) – The message to sign.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns</dt><dd><p>Signature: the message signature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.verify">
+<span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies that this signature comes from signing the data with this signer’s public key.
+Also if public key isn’t on the curve returns <cite>false</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Sequence</em><em>[</em><em>int</em><em>] </em><em>| </em><em>bytes</em>) – the unsigned message.</p></li>
+<li><p><strong>signature</strong> (<em>Signature</em>) – The signature.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signature verification result</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.InMemorySigner.write_to_file">
+<span class="sig-name descname"><span class="pre">write_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.InMemorySigner.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>pathlib.Path</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KeyType</span></span><a class="headerlink" href="#pyonear.crypto.KeyType" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyType.ED25519">
+<span class="sig-name descname"><span class="pre">ED25519</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">KeyType.ED25519</span></em><a class="headerlink" href="#pyonear.crypto.KeyType.ED25519" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyType.SECP256K1">
+<span class="sig-name descname"><span class="pre">SECP256K1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">KeyType.SECP256K1</span></em><a class="headerlink" href="#pyonear.crypto.KeyType.SECP256K1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KeyFile</span></span><a class="headerlink" href="#pyonear.crypto.KeyFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>A file for storing keys in.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.crypto.KeyFile.account_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the account ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="account_id.html#pyonear.account_id.AccountId" title="pyonear.account_id.AccountId">AccountId</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.KeyFile.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.from_file">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.KeyFile.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>pathlib.Path</em>) – The file to read.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>KeyFile</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.KeyFile.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.crypto.KeyFile.public_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>the public key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PublicKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.secret_key">
+<span class="sig-name descname"><span class="pre">secret_key</span></span><a class="headerlink" href="#pyonear.crypto.KeyFile.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>the secret key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SecretKey</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.KeyFile.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.crypto.KeyFile.write_to_file">
+<span class="sig-name descname"><span class="pre">write_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.crypto.KeyFile.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>pathlib.Path</em>) – The file to write.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="error/index.html" class="btn btn-neutral float-right" title="error" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="crypto_hash.html" class="btn btn-neutral float-left" title="crypto_hash" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

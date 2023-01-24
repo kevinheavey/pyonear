@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>account_id &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="account" href="account.html" />
+    <link rel="prev" title="API Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">account_id</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.account_id.AccountId"><code class="docutils literal notranslate"><span class="pre">AccountId</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.MAX_LEN"><code class="docutils literal notranslate"><span class="pre">AccountId.MAX_LEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.MIN_LEN"><code class="docutils literal notranslate"><span class="pre">AccountId.MIN_LEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.from_bytes"><code class="docutils literal notranslate"><span class="pre">AccountId.from_bytes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.from_json"><code class="docutils literal notranslate"><span class="pre">AccountId.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.is_implicit"><code class="docutils literal notranslate"><span class="pre">AccountId.is_implicit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.is_sub_account_of"><code class="docutils literal notranslate"><span class="pre">AccountId.is_sub_account_of()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.is_system"><code class="docutils literal notranslate"><span class="pre">AccountId.is_system()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.is_top_level"><code class="docutils literal notranslate"><span class="pre">AccountId.is_top_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.to_json"><code class="docutils literal notranslate"><span class="pre">AccountId.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.account_id.AccountId.validate"><code class="docutils literal notranslate"><span class="pre">AccountId.validate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="account.html">account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto.html">crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error/index.html">error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle.html">merkle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transaction.html">transaction</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>account_id</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/account_id.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-pyonear.account_id">
+<span id="account-id"></span><h1>account_id<a class="headerlink" href="#module-pyonear.account_id" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AccountId</span></span><a class="headerlink" href="#pyonear.account_id.AccountId" title="Permalink to this definition">¶</a></dt>
+<dd><p>NEAR Account Identifier.</p>
+<p>This is a unique, syntactically valid, human-readable account identifier on the NEAR network.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;ƒelicia.near&quot;</span><span class="p">)</span> <span class="c1"># (ƒ is not f)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">the Account ID contains an invalid character &#39;ƒ&#39; at index 0</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.MAX_LEN">
+<span class="sig-name descname"><span class="pre">MAX_LEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#pyonear.account_id.AccountId.MAX_LEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.MIN_LEN">
+<span class="sig-name descname"><span class="pre">MIN_LEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pyonear.account_id.AccountId.MIN_LEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.is_implicit">
+<span class="sig-name descname"><span class="pre">is_implicit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.is_implicit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">AccountId</span></code> is a 64 characters long hexadecimal.</p>
+<p>See <a class="reference external" href="https://docs.near.org/docs/concepts/account#implicit-accounts">Implicit-Accounts</a>.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_implicit</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rando</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;98793cd91a3f870fb126f66285808c7e094afcfc4eda8a970f6648cdf0dbd6de&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rando</span><span class="o">.</span><span class="n">is_implicit</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.is_sub_account_of">
+<span class="sig-name descname"><span class="pre">is_sub_account_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.is_sub_account_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">`True</span></code> if the <code class="docutils literal notranslate"><span class="pre">AccountId</span></code> is a direct sub-account of the provided parent account.</p>
+<p>See <a class="reference external" href="https://docs.near.org/docs/concepts/account#subaccounts">Subaccounts</a>.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">near_tla</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">near_tla</span><span class="o">.</span><span class="n">is_top_level</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice</span><span class="o">.</span><span class="n">is_sub_account_of</span><span class="p">(</span><span class="n">near_tla</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice_app</span> <span class="o">=</span> <span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;app.alice.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice_app</span><span class="o">.</span><span class="n">is_sub_account_of</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alice_app</span><span class="o">.</span><span class="n">is_sub_account_of</span><span class="p">(</span><span class="n">near_tla</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.is_system">
+<span class="sig-name descname"><span class="pre">is_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.is_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this <code class="docutils literal notranslate"><span class="pre">AccountId</span></code> is the system account.</p>
+<p>See <a class="reference external" href="https://nomicon.io/DataStructures/Account.html?highlight=system#system-account">System account</a>.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_system</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_system</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.is_top_level">
+<span class="sig-name descname"><span class="pre">is_top_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.is_top_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the <code class="docutils literal notranslate"><span class="pre">AccountId</span></code> is a top-level NEAR Account ID.</p>
+<p>See <a class="reference external" href="https://docs.near.org/docs/concepts/account#top-level-accounts">Top-level Accounts</a>.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;near&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_top_level</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_top_level</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_top_level</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.account_id.AccountId.validate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.account_id.AccountId.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a string as a well-structured NEAR Account ID.</p>
+<p>Checks Account ID validity without constructing an <code class="docutils literal notranslate"><span class="pre">AccountId</span></code> instance.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyonear.account_id</span> <span class="kn">import</span> <span class="n">AccountId</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="s2">&quot;alice.near&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">AccountId</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="s2">&quot;ƒelicia.near&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">the Account ID contains an invalid character &#39;ƒ&#39; at index 0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="account.html" class="btn btn-neutral float-right" title="account" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

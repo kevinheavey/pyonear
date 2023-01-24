@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>config &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="crypto_hash" href="crypto_hash.html" />
+    <link rel="prev" title="account" href="account.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="account_id.html">account_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account.html">account</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">config</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.config.ActionCosts"><code class="docutils literal notranslate"><span class="pre">ActionCosts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.add_key"><code class="docutils literal notranslate"><span class="pre">ActionCosts.add_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.create_account"><code class="docutils literal notranslate"><span class="pre">ActionCosts.create_account</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.delete_account"><code class="docutils literal notranslate"><span class="pre">ActionCosts.delete_account</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.delete_key"><code class="docutils literal notranslate"><span class="pre">ActionCosts.delete_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.deploy_contract"><code class="docutils literal notranslate"><span class="pre">ActionCosts.deploy_contract</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.function_call"><code class="docutils literal notranslate"><span class="pre">ActionCosts.function_call</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.new_receipt"><code class="docutils literal notranslate"><span class="pre">ActionCosts.new_receipt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.stake"><code class="docutils literal notranslate"><span class="pre">ActionCosts.stake</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.transfer"><code class="docutils literal notranslate"><span class="pre">ActionCosts.transfer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ActionCosts.value_return"><code class="docutils literal notranslate"><span class="pre">ActionCosts.value_return</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyonear.config.ExtCosts"><code class="docutils literal notranslate"><span class="pre">ExtCosts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_g1_multiexp_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_g1_multiexp_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_g1_multiexp_element"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_g1_multiexp_element</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_g1_sum_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_g1_sum_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_g1_sum_element"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_g1_sum_element</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_pairing_check_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_pairing_check_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.alt_bn128_pairing_check_element"><code class="docutils literal notranslate"><span class="pre">ExtCosts.alt_bn128_pairing_check_element</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.contract_loading_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.contract_loading_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.contract_loading_bytes"><code class="docutils literal notranslate"><span class="pre">ExtCosts.contract_loading_bytes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.ecrecover_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.ecrecover_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.ed25519_verify_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.ed25519_verify_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.ed25519_verify_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.ed25519_verify_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.keccak256_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.keccak256_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.keccak256_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.keccak256_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.keccak512_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.keccak512_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.keccak512_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.keccak512_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.log_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.log_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.log_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.log_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.promise_and_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.promise_and_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.promise_and_per_promise"><code class="docutils literal notranslate"><span class="pre">ExtCosts.promise_and_per_promise</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.promise_return"><code class="docutils literal notranslate"><span class="pre">ExtCosts.promise_return</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.read_cached_trie_node"><code class="docutils literal notranslate"><span class="pre">ExtCosts.read_cached_trie_node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.read_memory_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.read_memory_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.read_memory_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.read_memory_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.read_register_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.read_register_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.read_register_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.read_register_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.ripemd160_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.ripemd160_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.ripemd160_block"><code class="docutils literal notranslate"><span class="pre">ExtCosts.ripemd160_block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.sha256_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.sha256_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.sha256_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.sha256_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_has_key_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_has_key_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_has_key_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_has_key_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_create_from_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_create_from_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_create_prefix_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_create_prefix_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_create_prefix_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_create_prefix_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_create_range_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_create_range_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_create_to_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_create_to_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_next_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_next_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_next_key_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_next_key_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_iter_next_value_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_iter_next_value_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_read_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_read_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_read_key_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_read_key_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_read_value_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_read_value_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_remove_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_remove_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_remove_key_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_remove_key_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_remove_ret_value_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_remove_ret_value_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_write_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_write_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_write_evicted_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_write_evicted_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_write_key_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_write_key_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.storage_write_value_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.storage_write_value_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.touching_trie_node"><code class="docutils literal notranslate"><span class="pre">ExtCosts.touching_trie_node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.utf16_decoding_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.utf16_decoding_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.utf16_decoding_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.utf16_decoding_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.utf8_decoding_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.utf8_decoding_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.utf8_decoding_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.utf8_decoding_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.validator_stake_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.validator_stake_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.validator_total_stake_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.validator_total_stake_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.write_memory_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.write_memory_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.write_memory_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.write_memory_byte</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.write_register_base"><code class="docutils literal notranslate"><span class="pre">ExtCosts.write_register_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.config.ExtCosts.write_register_byte"><code class="docutils literal notranslate"><span class="pre">ExtCosts.write_register_byte</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto.html">crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error/index.html">error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle.html">merkle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transaction.html">transaction</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>config</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/config.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-pyonear.config">
+<span id="config"></span><h1>config<a class="headerlink" href="#module-pyonear.config" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionCosts</span></span><a class="headerlink" href="#pyonear.config.ActionCosts" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.add_key">
+<span class="sig-name descname"><span class="pre">add_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.add_key</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.add_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.create_account">
+<span class="sig-name descname"><span class="pre">create_account</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.create_account</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.create_account" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.delete_account">
+<span class="sig-name descname"><span class="pre">delete_account</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.delete_account</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.delete_account" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.delete_key">
+<span class="sig-name descname"><span class="pre">delete_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.delete_key</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.delete_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.deploy_contract">
+<span class="sig-name descname"><span class="pre">deploy_contract</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.deploy_contract</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.deploy_contract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.function_call">
+<span class="sig-name descname"><span class="pre">function_call</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.function_call</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.function_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.new_receipt">
+<span class="sig-name descname"><span class="pre">new_receipt</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.new_receipt</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.new_receipt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.stake">
+<span class="sig-name descname"><span class="pre">stake</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.stake</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.stake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.transfer">
+<span class="sig-name descname"><span class="pre">transfer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.transfer</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.transfer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ActionCosts.value_return">
+<span class="sig-name descname"><span class="pre">value_return</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionCosts.value_return</span></em><a class="headerlink" href="#pyonear.config.ActionCosts.value_return" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExtCosts</span></span><a class="headerlink" href="#pyonear.config.ExtCosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strongly-typed representation of the fees for counting.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_g1_multiexp_base">
+<span class="sig-name descname"><span class="pre">alt_bn128_g1_multiexp_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_g1_multiexp_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_g1_multiexp_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_g1_multiexp_element">
+<span class="sig-name descname"><span class="pre">alt_bn128_g1_multiexp_element</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_g1_multiexp_element</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_g1_multiexp_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_g1_sum_base">
+<span class="sig-name descname"><span class="pre">alt_bn128_g1_sum_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_g1_sum_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_g1_sum_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_g1_sum_element">
+<span class="sig-name descname"><span class="pre">alt_bn128_g1_sum_element</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_g1_sum_element</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_g1_sum_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_pairing_check_base">
+<span class="sig-name descname"><span class="pre">alt_bn128_pairing_check_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_pairing_check_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_pairing_check_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.alt_bn128_pairing_check_element">
+<span class="sig-name descname"><span class="pre">alt_bn128_pairing_check_element</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.alt_bn128_pairing_check_element</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.alt_bn128_pairing_check_element" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.base">
+<span class="sig-name descname"><span class="pre">base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.contract_loading_base">
+<span class="sig-name descname"><span class="pre">contract_loading_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.contract_loading_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.contract_loading_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.contract_loading_bytes">
+<span class="sig-name descname"><span class="pre">contract_loading_bytes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.contract_loading_bytes</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.contract_loading_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.ecrecover_base">
+<span class="sig-name descname"><span class="pre">ecrecover_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.ecrecover_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.ecrecover_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.ed25519_verify_base">
+<span class="sig-name descname"><span class="pre">ed25519_verify_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.ed25519_verify_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.ed25519_verify_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.ed25519_verify_byte">
+<span class="sig-name descname"><span class="pre">ed25519_verify_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.ed25519_verify_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.ed25519_verify_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.keccak256_base">
+<span class="sig-name descname"><span class="pre">keccak256_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.keccak256_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.keccak256_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.keccak256_byte">
+<span class="sig-name descname"><span class="pre">keccak256_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.keccak256_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.keccak256_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.keccak512_base">
+<span class="sig-name descname"><span class="pre">keccak512_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.keccak512_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.keccak512_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.keccak512_byte">
+<span class="sig-name descname"><span class="pre">keccak512_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.keccak512_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.keccak512_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.log_base">
+<span class="sig-name descname"><span class="pre">log_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.log_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.log_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.log_byte">
+<span class="sig-name descname"><span class="pre">log_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.log_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.log_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.promise_and_base">
+<span class="sig-name descname"><span class="pre">promise_and_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.promise_and_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.promise_and_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.promise_and_per_promise">
+<span class="sig-name descname"><span class="pre">promise_and_per_promise</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.promise_and_per_promise</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.promise_and_per_promise" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.promise_return">
+<span class="sig-name descname"><span class="pre">promise_return</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.promise_return</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.promise_return" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.read_cached_trie_node">
+<span class="sig-name descname"><span class="pre">read_cached_trie_node</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.read_cached_trie_node</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.read_cached_trie_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.read_memory_base">
+<span class="sig-name descname"><span class="pre">read_memory_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.read_memory_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.read_memory_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.read_memory_byte">
+<span class="sig-name descname"><span class="pre">read_memory_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.read_memory_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.read_memory_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.read_register_base">
+<span class="sig-name descname"><span class="pre">read_register_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.read_register_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.read_register_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.read_register_byte">
+<span class="sig-name descname"><span class="pre">read_register_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.read_register_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.read_register_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.ripemd160_base">
+<span class="sig-name descname"><span class="pre">ripemd160_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.ripemd160_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.ripemd160_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.ripemd160_block">
+<span class="sig-name descname"><span class="pre">ripemd160_block</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.ripemd160_block</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.ripemd160_block" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.sha256_base">
+<span class="sig-name descname"><span class="pre">sha256_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.sha256_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.sha256_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.sha256_byte">
+<span class="sig-name descname"><span class="pre">sha256_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.sha256_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.sha256_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_has_key_base">
+<span class="sig-name descname"><span class="pre">storage_has_key_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_has_key_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_has_key_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_has_key_byte">
+<span class="sig-name descname"><span class="pre">storage_has_key_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_has_key_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_has_key_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_create_from_byte">
+<span class="sig-name descname"><span class="pre">storage_iter_create_from_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_create_from_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_create_from_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_create_prefix_base">
+<span class="sig-name descname"><span class="pre">storage_iter_create_prefix_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_create_prefix_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_create_prefix_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_create_prefix_byte">
+<span class="sig-name descname"><span class="pre">storage_iter_create_prefix_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_create_prefix_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_create_prefix_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_create_range_base">
+<span class="sig-name descname"><span class="pre">storage_iter_create_range_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_create_range_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_create_range_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_create_to_byte">
+<span class="sig-name descname"><span class="pre">storage_iter_create_to_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_create_to_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_create_to_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_next_base">
+<span class="sig-name descname"><span class="pre">storage_iter_next_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_next_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_next_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_next_key_byte">
+<span class="sig-name descname"><span class="pre">storage_iter_next_key_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_next_key_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_next_key_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_iter_next_value_byte">
+<span class="sig-name descname"><span class="pre">storage_iter_next_value_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_iter_next_value_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_iter_next_value_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_read_base">
+<span class="sig-name descname"><span class="pre">storage_read_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_read_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_read_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_read_key_byte">
+<span class="sig-name descname"><span class="pre">storage_read_key_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_read_key_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_read_key_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_read_value_byte">
+<span class="sig-name descname"><span class="pre">storage_read_value_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_read_value_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_read_value_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_remove_base">
+<span class="sig-name descname"><span class="pre">storage_remove_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_remove_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_remove_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_remove_key_byte">
+<span class="sig-name descname"><span class="pre">storage_remove_key_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_remove_key_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_remove_key_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_remove_ret_value_byte">
+<span class="sig-name descname"><span class="pre">storage_remove_ret_value_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_remove_ret_value_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_remove_ret_value_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_write_base">
+<span class="sig-name descname"><span class="pre">storage_write_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_write_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_write_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_write_evicted_byte">
+<span class="sig-name descname"><span class="pre">storage_write_evicted_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_write_evicted_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_write_evicted_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_write_key_byte">
+<span class="sig-name descname"><span class="pre">storage_write_key_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_write_key_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_write_key_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.storage_write_value_byte">
+<span class="sig-name descname"><span class="pre">storage_write_value_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.storage_write_value_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.storage_write_value_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.touching_trie_node">
+<span class="sig-name descname"><span class="pre">touching_trie_node</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.touching_trie_node</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.touching_trie_node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.utf16_decoding_base">
+<span class="sig-name descname"><span class="pre">utf16_decoding_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.utf16_decoding_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.utf16_decoding_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.utf16_decoding_byte">
+<span class="sig-name descname"><span class="pre">utf16_decoding_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.utf16_decoding_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.utf16_decoding_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.utf8_decoding_base">
+<span class="sig-name descname"><span class="pre">utf8_decoding_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.utf8_decoding_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.utf8_decoding_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.utf8_decoding_byte">
+<span class="sig-name descname"><span class="pre">utf8_decoding_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.utf8_decoding_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.utf8_decoding_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.validator_stake_base">
+<span class="sig-name descname"><span class="pre">validator_stake_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.validator_stake_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.validator_stake_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.validator_total_stake_base">
+<span class="sig-name descname"><span class="pre">validator_total_stake_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.validator_total_stake_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.validator_total_stake_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.write_memory_base">
+<span class="sig-name descname"><span class="pre">write_memory_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.write_memory_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.write_memory_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.write_memory_byte">
+<span class="sig-name descname"><span class="pre">write_memory_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.write_memory_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.write_memory_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.write_register_base">
+<span class="sig-name descname"><span class="pre">write_register_base</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.write_register_base</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.write_register_base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.config.ExtCosts.write_register_byte">
+<span class="sig-name descname"><span class="pre">write_register_byte</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ExtCosts.write_register_byte</span></em><a class="headerlink" href="#pyonear.config.ExtCosts.write_register_byte" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="crypto_hash.html" class="btn btn-neutral float-right" title="crypto_hash" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="account.html" class="btn btn-neutral float-left" title="account" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

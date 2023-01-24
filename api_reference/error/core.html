@@ -1,0 +1,1941 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>core &mdash; pyonear 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="exception" href="exception.html" />
+    <link rel="prev" title="error" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyonear
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">pyonear</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../account_id.html">account_id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../account.html">account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config.html">config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto_hash.html">crypto_hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">crypto</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">error</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ActionsValidationErrorFieldless"><code class="docutils literal notranslate"><span class="pre">ActionsValidationErrorFieldless</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.TotalPrepaidGasExceeded"><code class="docutils literal notranslate"><span class="pre">TotalPrepaidGasExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.TotalNumberOfActionsExceeded"><code class="docutils literal notranslate"><span class="pre">TotalNumberOfActionsExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded"><code class="docutils literal notranslate"><span class="pre">AddKeyMethodNamesNumberOfBytesExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded"><code class="docutils literal notranslate"><span class="pre">AddKeyMethodNameLengthExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidAccountId"><code class="docutils literal notranslate"><span class="pre">InvalidAccountId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ContractSizeExceeded"><code class="docutils literal notranslate"><span class="pre">ContractSizeExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded"><code class="docutils literal notranslate"><span class="pre">FunctionCallMethodNameLengthExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded"><code class="docutils literal notranslate"><span class="pre">FunctionCallArgumentsLengthExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.UnsuitableStakingKey"><code class="docutils literal notranslate"><span class="pre">UnsuitableStakingKey</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidPredecessorId"><code class="docutils literal notranslate"><span class="pre">InvalidPredecessorId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ReceiptInvalidReceiverId"><code class="docutils literal notranslate"><span class="pre">ReceiptInvalidReceiverId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ReceiptInvalidSignerId"><code class="docutils literal notranslate"><span class="pre">ReceiptInvalidSignerId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidDataReceiverId"><code class="docutils literal notranslate"><span class="pre">InvalidDataReceiverId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ReturnedValueLengthExceeded"><code class="docutils literal notranslate"><span class="pre">ReturnedValueLengthExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.NumberInputDataDependenciesExceeded"><code class="docutils literal notranslate"><span class="pre">NumberInputDataDependenciesExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidAccessKeyErrorFieldless"><code class="docutils literal notranslate"><span class="pre">InvalidAccessKeyErrorFieldless</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AccessKeyNotFound"><code class="docutils literal notranslate"><span class="pre">AccessKeyNotFound</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ReceiverMismatch"><code class="docutils literal notranslate"><span class="pre">ReceiverMismatch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.MethodNameMismatch"><code class="docutils literal notranslate"><span class="pre">MethodNameMismatch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.NotEnoughAllowance"><code class="docutils literal notranslate"><span class="pre">NotEnoughAllowance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidTxErrorFieldless"><code class="docutils literal notranslate"><span class="pre">InvalidTxErrorFieldless</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidSignerId"><code class="docutils literal notranslate"><span class="pre">InvalidSignerId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.SignerDoesNotExist"><code class="docutils literal notranslate"><span class="pre">SignerDoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidNonce"><code class="docutils literal notranslate"><span class="pre">InvalidNonce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.NonceTooLarge"><code class="docutils literal notranslate"><span class="pre">NonceTooLarge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InvalidReceiverId"><code class="docutils literal notranslate"><span class="pre">InvalidReceiverId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.NotEnoughBalance"><code class="docutils literal notranslate"><span class="pre">NotEnoughBalance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.LackBalanceForState"><code class="docutils literal notranslate"><span class="pre">LackBalanceForState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.TransactionSizeExceeded"><code class="docutils literal notranslate"><span class="pre">TransactionSizeExceeded</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AccountAlreadyExists"><code class="docutils literal notranslate"><span class="pre">AccountAlreadyExists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AccountDoesNotExist"><code class="docutils literal notranslate"><span class="pre">AccountDoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.CreateAccountOnlyByRegistrar"><code class="docutils literal notranslate"><span class="pre">CreateAccountOnlyByRegistrar</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.CreateAccountNotAllowed"><code class="docutils literal notranslate"><span class="pre">CreateAccountNotAllowed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ActorNoPermission"><code class="docutils literal notranslate"><span class="pre">ActorNoPermission</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.DeleteKeyDoesNotExist"><code class="docutils literal notranslate"><span class="pre">DeleteKeyDoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.AddKeyAlreadyExists"><code class="docutils literal notranslate"><span class="pre">AddKeyAlreadyExists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.DeleteAccountStaking"><code class="docutils literal notranslate"><span class="pre">DeleteAccountStaking</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.TriesToUnstake"><code class="docutils literal notranslate"><span class="pre">TriesToUnstake</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.TriesToStake"><code class="docutils literal notranslate"><span class="pre">TriesToStake</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.InsufficientStake"><code class="docutils literal notranslate"><span class="pre">InsufficientStake</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed"><code class="docutils literal notranslate"><span class="pre">OnlyImplicitAccountCreationAllowed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.DeleteAccountWithLargeState"><code class="docutils literal notranslate"><span class="pre">DeleteAccountWithLargeState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyonear.error.core.ActionError"><code class="docutils literal notranslate"><span class="pre">ActionError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="exception.html">exception</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm.html">vm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../merkle.html">merkle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transaction.html">transaction</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyonear</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">API Reference</a> &raquo;</li>
+        
+          <li><a href="index.html">error</a> &raquo;</li>
+        
+      <li>core</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/kevinheavey/pyonear/blob/main/docs/api_reference/error/core.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-pyonear.error.core">
+<span id="core"></span><h1>core<a class="headerlink" href="#module-pyonear.error.core" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionsValidationErrorFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionsValidationErrorFieldless</span></span><a class="headerlink" href="#pyonear.error.core.ActionsValidationErrorFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionsValidationErrorFieldless.DeleteActionMustBeFinal">
+<span class="sig-name descname"><span class="pre">DeleteActionMustBeFinal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionsValidationErrorFieldless.DeleteActionMustBeFinal</span></em><a class="headerlink" href="#pyonear.error.core.ActionsValidationErrorFieldless.DeleteActionMustBeFinal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionsValidationErrorFieldless.FunctionCallZeroAttachedGas">
+<span class="sig-name descname"><span class="pre">FunctionCallZeroAttachedGas</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionsValidationErrorFieldless.FunctionCallZeroAttachedGas</span></em><a class="headerlink" href="#pyonear.error.core.ActionsValidationErrorFieldless.FunctionCallZeroAttachedGas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionsValidationErrorFieldless.IntegerOverflow">
+<span class="sig-name descname"><span class="pre">IntegerOverflow</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ActionsValidationErrorFieldless.IntegerOverflow</span></em><a class="headerlink" href="#pyonear.error.core.ActionsValidationErrorFieldless.IntegerOverflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TotalPrepaidGasExceeded</span></span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total prepaid gas (for all given actions) exceeded the limit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalPrepaidGasExceeded.total_prepaid_gas">
+<span class="sig-name descname"><span class="pre">total_prepaid_gas</span></span><a class="headerlink" href="#pyonear.error.core.TotalPrepaidGasExceeded.total_prepaid_gas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TotalNumberOfActionsExceeded</span></span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of actions exceeded the given limit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TotalNumberOfActionsExceeded.total_number_of_actions">
+<span class="sig-name descname"><span class="pre">total_number_of_actions</span></span><a class="headerlink" href="#pyonear.error.core.TotalNumberOfActionsExceeded.total_number_of_actions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddKeyMethodNamesNumberOfBytesExceeded</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total number of bytes of the method names exceeded the limit in a Add Key action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.total_number_of_bytes">
+<span class="sig-name descname"><span class="pre">total_number_of_bytes</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNamesNumberOfBytesExceeded.total_number_of_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddKeyMethodNameLengthExceeded</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of some method name exceeded the limit in a Add Key action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyMethodNameLengthExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyMethodNameLengthExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccountId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidAccountId</span></span><a class="headerlink" href="#pyonear.error.core.InvalidAccountId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalid account ID.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccountId.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.InvalidAccountId.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccountId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidAccountId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccountId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidAccountId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccountId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidAccountId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ContractSizeExceeded</span></span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the contract code exceeded the limit in a DeployContract action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded.size">
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ContractSizeExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ContractSizeExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FunctionCallMethodNameLengthExceeded</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the method name exceeded the limit in a Function Call action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallMethodNameLengthExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallMethodNameLengthExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FunctionCallArgumentsLengthExceeded</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the arguments exceeded the limit in a Function Call action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.FunctionCallArgumentsLengthExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.FunctionCallArgumentsLengthExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.UnsuitableStakingKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnsuitableStakingKey</span></span><a class="headerlink" href="#pyonear.error.core.UnsuitableStakingKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>An attempt to stake with a public key that is not convertible to ristretto.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.UnsuitableStakingKey.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.UnsuitableStakingKey.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.UnsuitableStakingKey.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.UnsuitableStakingKey.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.UnsuitableStakingKey.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.error.core.UnsuitableStakingKey.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.UnsuitableStakingKey.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.UnsuitableStakingKey.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidPredecessorId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidPredecessorId</span></span><a class="headerlink" href="#pyonear.error.core.InvalidPredecessorId" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">predecessor_id</span></code> of a Receipt is not valid.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidPredecessorId.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.InvalidPredecessorId.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidPredecessorId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidPredecessorId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidPredecessorId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidPredecessorId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidPredecessorId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidPredecessorId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidReceiverId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReceiptInvalidReceiverId</span></span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidReceiverId" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <cite>receiver_id</cite> of a Receipt is not valid.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidReceiverId.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidReceiverId.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidReceiverId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidReceiverId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidReceiverId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidReceiverId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidReceiverId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidReceiverId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidSignerId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReceiptInvalidSignerId</span></span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidSignerId" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <cite>signer_id</cite> of an ActionReceipt is not valid.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidSignerId.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidSignerId.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidSignerId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidSignerId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidSignerId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidSignerId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiptInvalidSignerId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiptInvalidSignerId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidDataReceiverId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidDataReceiverId</span></span><a class="headerlink" href="#pyonear.error.core.InvalidDataReceiverId" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the returned data exceeded the limit in a DataReceipt.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidDataReceiverId.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.InvalidDataReceiverId.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidDataReceiverId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidDataReceiverId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidDataReceiverId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidDataReceiverId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidDataReceiverId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidDataReceiverId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReturnedValueLengthExceeded</span></span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the returned data exceeded the limit in a DataReceipt.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded.length">
+<span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded.length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReturnedValueLengthExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReturnedValueLengthExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NumberInputDataDependenciesExceeded</span></span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of input data dependencies exceeds the limit in an ActionReceipt.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded.number_of_input_data_dependencies">
+<span class="sig-name descname"><span class="pre">number_of_input_data_dependencies</span></span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded.number_of_input_data_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NumberInputDataDependenciesExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NumberInputDataDependenciesExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccessKeyErrorFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidAccessKeyErrorFieldless</span></span><a class="headerlink" href="#pyonear.error.core.InvalidAccessKeyErrorFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Happens if a wrong AccessKey used or AccessKey has not enough permissions</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccessKeyErrorFieldless.DepositWithFunctionCall">
+<span class="sig-name descname"><span class="pre">DepositWithFunctionCall</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidAccessKeyErrorFieldless.DepositWithFunctionCall</span></em><a class="headerlink" href="#pyonear.error.core.InvalidAccessKeyErrorFieldless.DepositWithFunctionCall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidAccessKeyErrorFieldless.RequiresFullAccess">
+<span class="sig-name descname"><span class="pre">RequiresFullAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidAccessKeyErrorFieldless.RequiresFullAccess</span></em><a class="headerlink" href="#pyonear.error.core.InvalidAccessKeyErrorFieldless.RequiresFullAccess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AccessKeyNotFound</span></span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>The access key identified by the <code class="docutils literal notranslate"><span class="pre">public_key</span></code> doesn’t exist for the account</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccessKeyNotFound.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccessKeyNotFound.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReceiverMismatch</span></span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transaction <cite>receiver_id</cite> doesn’t match the access key receiver_id</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch.ak_receiver">
+<span class="sig-name descname"><span class="pre">ak_receiver</span></span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch.ak_receiver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ReceiverMismatch.tx_receiver">
+<span class="sig-name descname"><span class="pre">tx_receiver</span></span><a class="headerlink" href="#pyonear.error.core.ReceiverMismatch.tx_receiver" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.MethodNameMismatch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MethodNameMismatch</span></span><a class="headerlink" href="#pyonear.error.core.MethodNameMismatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transaction method name isn’t allowed by the access key</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.MethodNameMismatch.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.MethodNameMismatch.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.MethodNameMismatch.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.MethodNameMismatch.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.MethodNameMismatch.method_name">
+<span class="sig-name descname"><span class="pre">method_name</span></span><a class="headerlink" href="#pyonear.error.core.MethodNameMismatch.method_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.MethodNameMismatch.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.MethodNameMismatch.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NotEnoughAllowance</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access Key does not have enough allowance to cover transaction cost</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.allowance">
+<span class="sig-name descname"><span class="pre">allowance</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.allowance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughAllowance.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughAllowance.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidTxErrorFieldless">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidTxErrorFieldless</span></span><a class="headerlink" href="#pyonear.error.core.InvalidTxErrorFieldless" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidTxErrorFieldless.CostOverflow">
+<span class="sig-name descname"><span class="pre">CostOverflow</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidTxErrorFieldless.CostOverflow</span></em><a class="headerlink" href="#pyonear.error.core.InvalidTxErrorFieldless.CostOverflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidTxErrorFieldless.Expired">
+<span class="sig-name descname"><span class="pre">Expired</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidTxErrorFieldless.Expired</span></em><a class="headerlink" href="#pyonear.error.core.InvalidTxErrorFieldless.Expired" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidTxErrorFieldless.InvalidChain">
+<span class="sig-name descname"><span class="pre">InvalidChain</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidTxErrorFieldless.InvalidChain</span></em><a class="headerlink" href="#pyonear.error.core.InvalidTxErrorFieldless.InvalidChain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidTxErrorFieldless.InvalidSignature">
+<span class="sig-name descname"><span class="pre">InvalidSignature</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">InvalidTxErrorFieldless.InvalidSignature</span></em><a class="headerlink" href="#pyonear.error.core.InvalidTxErrorFieldless.InvalidSignature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidSignerId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidSignerId</span></span><a class="headerlink" href="#pyonear.error.core.InvalidSignerId" title="Permalink to this definition">¶</a></dt>
+<dd><p>TX signer_id is not a valid <code class="docutils literal notranslate"><span class="pre">AccountId</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidSignerId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidSignerId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidSignerId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidSignerId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidSignerId.signer_id">
+<span class="sig-name descname"><span class="pre">signer_id</span></span><a class="headerlink" href="#pyonear.error.core.InvalidSignerId.signer_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidSignerId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidSignerId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.SignerDoesNotExist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SignerDoesNotExist</span></span><a class="headerlink" href="#pyonear.error.core.SignerDoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>TX signer_id is not found in a storage</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.SignerDoesNotExist.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.SignerDoesNotExist.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.SignerDoesNotExist.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.SignerDoesNotExist.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.SignerDoesNotExist.signer_id">
+<span class="sig-name descname"><span class="pre">signer_id</span></span><a class="headerlink" href="#pyonear.error.core.SignerDoesNotExist.signer_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.SignerDoesNotExist.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.SignerDoesNotExist.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidNonce</span></span><a class="headerlink" href="#pyonear.error.core.InvalidNonce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transaction nonce must be <cite>account[access_key].nonce + 1</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce.ak_nonce">
+<span class="sig-name descname"><span class="pre">ak_nonce</span></span><a class="headerlink" href="#pyonear.error.core.InvalidNonce.ak_nonce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidNonce.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidNonce.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidNonce.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidNonce.tx_nonce">
+<span class="sig-name descname"><span class="pre">tx_nonce</span></span><a class="headerlink" href="#pyonear.error.core.InvalidNonce.tx_nonce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NonceTooLarge</span></span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transaction nonce is larger than the upper bound given by the block height</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge.tx_nonce">
+<span class="sig-name descname"><span class="pre">tx_nonce</span></span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge.tx_nonce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NonceTooLarge.upper_bound">
+<span class="sig-name descname"><span class="pre">upper_bound</span></span><a class="headerlink" href="#pyonear.error.core.NonceTooLarge.upper_bound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidReceiverId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InvalidReceiverId</span></span><a class="headerlink" href="#pyonear.error.core.InvalidReceiverId" title="Permalink to this definition">¶</a></dt>
+<dd><p>TX receiver_id is not a valid AccountId</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidReceiverId.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidReceiverId.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidReceiverId.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidReceiverId.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidReceiverId.receiver_id">
+<span class="sig-name descname"><span class="pre">receiver_id</span></span><a class="headerlink" href="#pyonear.error.core.InvalidReceiverId.receiver_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InvalidReceiverId.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InvalidReceiverId.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NotEnoughBalance</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Account does not have enough balance to cover TX cost</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.balance">
+<span class="sig-name descname"><span class="pre">balance</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.balance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.cost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.signer_id">
+<span class="sig-name descname"><span class="pre">signer_id</span></span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.signer_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.NotEnoughBalance.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.NotEnoughBalance.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LackBalanceForState</span></span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signer account doesn’t have enough balance after transaction.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState.account_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>An account which doesn’t have enough balance to cover storage.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState.amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required balance to cover the state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.LackBalanceForState.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.LackBalanceForState.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TransactionSizeExceeded</span></span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of serialized transaction exceeded the limit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded.size">
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TransactionSizeExceeded.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TransactionSizeExceeded.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountAlreadyExists">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AccountAlreadyExists</span></span><a class="headerlink" href="#pyonear.error.core.AccountAlreadyExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Happens when CreateAccount action tries to create an account with account_id which is already exists in the storage</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountAlreadyExists.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.AccountAlreadyExists.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountAlreadyExists.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountAlreadyExists.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountAlreadyExists.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountAlreadyExists.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountAlreadyExists.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountAlreadyExists.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountDoesNotExist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AccountDoesNotExist</span></span><a class="headerlink" href="#pyonear.error.core.AccountDoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Happens when TX receiver_id doesn’t exist (but action is not Action::CreateAccount)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountDoesNotExist.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.AccountDoesNotExist.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountDoesNotExist.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountDoesNotExist.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountDoesNotExist.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountDoesNotExist.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AccountDoesNotExist.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AccountDoesNotExist.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateAccountOnlyByRegistrar</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar" title="Permalink to this definition">¶</a></dt>
+<dd><p>A top-level account ID can only be created by registrar.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.predecessor_id">
+<span class="sig-name descname"><span class="pre">predecessor_id</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.predecessor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.registrar_account_id">
+<span class="sig-name descname"><span class="pre">registrar_account_id</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.registrar_account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountOnlyByRegistrar.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountOnlyByRegistrar.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateAccountNotAllowed</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>A newly created account must be under a namespace of the creator account</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed.predecessor_id">
+<span class="sig-name descname"><span class="pre">predecessor_id</span></span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed.predecessor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.CreateAccountNotAllowed.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.CreateAccountNotAllowed.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActorNoPermission</span></span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Administrative actions like <code class="docutils literal notranslate"><span class="pre">DeployContract</span></code>, <code class="docutils literal notranslate"><span class="pre">Stake</span></code>, <code class="docutils literal notranslate"><span class="pre">AddKey</span></code>, <code class="docutils literal notranslate"><span class="pre">DeleteKey</span></code>. can be proceed only if sender=receiver or the first TX action is a <code class="docutils literal notranslate"><span class="pre">CreateAccount</span></code> action</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission.actor_id">
+<span class="sig-name descname"><span class="pre">actor_id</span></span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission.actor_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActorNoPermission.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActorNoPermission.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteKeyDoesNotExist</span></span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Account tries to remove an access key that doesn’t exist</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteKeyDoesNotExist.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteKeyDoesNotExist.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddKeyAlreadyExists</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists" title="Permalink to this definition">¶</a></dt>
+<dd><p>The public key is already used for an existing access key</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists.public_key">
+<span class="sig-name descname"><span class="pre">public_key</span></span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.AddKeyAlreadyExists.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.AddKeyAlreadyExists.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountStaking">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteAccountStaking</span></span><a class="headerlink" href="#pyonear.error.core.DeleteAccountStaking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Account is staking and can not be deleted</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountStaking.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.DeleteAccountStaking.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountStaking.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountStaking.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountStaking.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountStaking.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountStaking.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountStaking.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToUnstake">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TriesToUnstake</span></span><a class="headerlink" href="#pyonear.error.core.TriesToUnstake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Account is not yet staked, but tries to unstake</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToUnstake.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.TriesToUnstake.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToUnstake.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToUnstake.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToUnstake.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToUnstake.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToUnstake.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToUnstake.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TriesToStake</span></span><a class="headerlink" href="#pyonear.error.core.TriesToStake" title="Permalink to this definition">¶</a></dt>
+<dd><p>The account doesn’t have enough balance to increase the stake.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.TriesToStake.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.balance">
+<span class="sig-name descname"><span class="pre">balance</span></span><a class="headerlink" href="#pyonear.error.core.TriesToStake.balance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToStake.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToStake.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.locked">
+<span class="sig-name descname"><span class="pre">locked</span></span><a class="headerlink" href="#pyonear.error.core.TriesToStake.locked" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.stake">
+<span class="sig-name descname"><span class="pre">stake</span></span><a class="headerlink" href="#pyonear.error.core.TriesToStake.stake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.TriesToStake.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.TriesToStake.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InsufficientStake</span></span><a class="headerlink" href="#pyonear.error.core.InsufficientStake" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.minimum_stake">
+<span class="sig-name descname"><span class="pre">minimum_stake</span></span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.minimum_stake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.stake">
+<span class="sig-name descname"><span class="pre">stake</span></span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.stake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.InsufficientStake.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.InsufficientStake.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.OnlyImplicitAccountCreationAllowed">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OnlyImplicitAccountCreationAllowed</span></span><a class="headerlink" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error occurs when a <code class="docutils literal notranslate"><span class="pre">CreateAccount</span></code> action is called on hex-characters account of length 64.  See implicit account creation NEP: &lt;<a class="reference external" href="https://github.com/nearprotocol/NEPs/pull/71">https://github.com/nearprotocol/NEPs/pull/71</a>&gt;.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.OnlyImplicitAccountCreationAllowed.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.OnlyImplicitAccountCreationAllowed.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.OnlyImplicitAccountCreationAllowed.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.OnlyImplicitAccountCreationAllowed.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.OnlyImplicitAccountCreationAllowed.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountWithLargeState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteAccountWithLargeState</span></span><a class="headerlink" href="#pyonear.error.core.DeleteAccountWithLargeState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete account whose state is large is temporarily banned.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountWithLargeState.account_id">
+<span class="sig-name descname"><span class="pre">account_id</span></span><a class="headerlink" href="#pyonear.error.core.DeleteAccountWithLargeState.account_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountWithLargeState.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountWithLargeState.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountWithLargeState.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountWithLargeState.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.DeleteAccountWithLargeState.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.DeleteAccountWithLargeState.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionError</span></span><a class="headerlink" href="#pyonear.error.core.ActionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>An error happened during Acton execution</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError.from_bytes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActionError.from_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize from bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>bytes</em>) – the serialized object.</p>
+</dd>
+</dl>
+<p>Returns: the deserialized object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError.from_json">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActionError.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build from a JSON string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError.index">
+<span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#pyonear.error.core.ActionError.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of the failed action in the transaction.
+Action index is not defined if ActionError.kind is <code class="docutils literal notranslate"><span class="pre">ActionErrorKind::LackBalanceForState</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><a class="headerlink" href="#pyonear.error.core.ActionError.kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>The kind of ActionError happened</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyonear.error.core.ActionError.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyonear.error.core.ActionError.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to a JSON string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="exception.html" class="btn btn-neutral float-right" title="exception" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="error" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Kevin Heavey.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
