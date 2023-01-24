@@ -1005,6 +1005,7 @@ pub struct ActionError(pub ActionErrorOriginal);
 #[richcmp_eq_only]
 #[pymethods]
 impl ActionError {
+    #[pyo3(signature = (index, kind))]
     #[new]
     pub fn new(index: Option<u64>, kind: ActionErrorKind) -> Self {
         ActionErrorOriginal {
