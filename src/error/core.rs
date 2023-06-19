@@ -8,6 +8,10 @@ use near_primitives::errors::{
     ReceiptValidationError as ReceiptValidationErrorOriginal,
     TxExecutionError as TxExecutionErrorOriginal,
 };
+use near_primitives::errors::ActionErrorKind::DelegateActionSenderDoesNotMatchTxReceiver;
+use near_primitives::errors::ActionErrorKind::DelegateActionAccessKeyError;
+use near_primitives::errors::ActionErrorKind::DelegateActionNonceTooLarge;
+use near_primitives::errors::ActionErrorKind::DelegateActionInvalidNonce;
 use near_primitives::{
     serialize::dec_format,
     types::{Balance, Gas, Nonce},
@@ -182,7 +186,25 @@ impl From<ActionErrorKindOriginal> for ActionErrorKind {
                 Self::DeleteAccountWithLargeState(DeleteAccountWithLargeState {
                     account_id: account_id.into(),
                 })
-            }
+            }, 
+            E::DelegateActionSenderDoesNotMatchTxReceiver { sender_id, receiver_id } => {
+                Self::DelegateActionSenderDoesNotMatchTxReceiver(DelegateActionSenderDoesNotMatchTxReceiver {
+                    sender_id, receiver_id
+                })
+            },
+            E::DelegateActionInvalidNonce { delegate_nonce, ak_nonce } => {
+                Self::DelegateActionInvalidNonce(DelegateActionInvalidNonce {
+                    delegate_nonce, ak_nonce
+                })
+            },
+            E::DelegateActionNonceTooLarge { delegate_nonce, upper_bound } => {
+                Self::DelegateActionNonceTooLarge(DelegateActionNonceTooLarge {
+                    delegate_nonce, upper_bound
+                })
+            },
+            E::DelegateActionAccessKeyError(x) =>  Self::DelegateActionAccessKeyError(x.into()),
+            E::DelegateActionInvalidSignature { } =>  Self::DelegateActionInvalidSignature,
+            E::DelegateActionExpired { } =>  Self::DelegateActionExpired
         }
     }
 }
@@ -979,7 +1001,25 @@ impl From<ActionsValidationErrorOriginal> for ActionsValidationError {
                 Self::UnsuitableStakingKey(UnsuitableStakingKey {
                     public_key: public_key.into(),
                 })
-            }
+            },
+            E::DelegateActionSenderDoesNotMatchTxReceiver { sender_id, receiver_id } => {
+                Self::DelegateActionSenderDoesNotMatchTxReceiver(DelegateActionSenderDoesNotMatchTxReceiver {
+                    sender_id, receiver_id
+                })
+            },
+            E::DelegateActionInvalidNonce { delegate_nonce, ak_nonce } => {
+                Self::DelegateActionInvalidNonce(DelegateActionInvalidNonce {
+                    delegate_nonce, ak_nonce
+                })
+            },
+            E::DelegateActionNonceTooLarge { delegate_nonce, upper_bound } => {
+                Self::DelegateActionNonceTooLarge(DelegateActionNonceTooLarge {
+                    delegate_nonce, upper_bound
+                })
+            },
+            E::DelegateActionAccessKeyError(x) =>  Self::DelegateActionAccessKeyError(x.into()),
+            E::DelegateActionInvalidSignature { } =>  Self::DelegateActionInvalidSignature,
+            E::DelegateActionExpired { } =>  Self::DelegateActionExpired
         }
     }
 }

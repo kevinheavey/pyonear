@@ -142,8 +142,8 @@ impl From<CacheError> for CacheErrorOriginal {
 impl From<CacheErrorOriginal> for CacheError {
     fn from(e: CacheErrorOriginal) -> Self {
         match e {
-            CacheErrorOriginal::ReadError => Self::Fieldless(CacheErrorFieldless::ReadError),
-            CacheErrorOriginal::WriteError => Self::Fieldless(CacheErrorFieldless::WriteError),
+            CacheErrorOriginal::ReadError() => Self::Fieldless(CacheErrorFieldless::ReadError),
+            CacheErrorOriginal::WriteError() => Self::Fieldless(CacheErrorFieldless::WriteError),
             CacheErrorOriginal::DeserializationError => {
                 Self::Fieldless(CacheErrorFieldless::DeserializationError)
             }

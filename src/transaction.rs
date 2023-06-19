@@ -11,10 +11,11 @@ use solders_macros::{common_methods, common_methods_core, richcmp_eq_only, EnumI
 use solders_traits::impl_display;
 use std::fmt;
 use std::hash::Hash;
-
+use near_primitives_core::profile::ProfileDataV3;
 use borsh::{BorshDeserialize, BorshSerialize};
 use serde::{Deserialize, Serialize};
-
+use near_primitives_core::types::Compute;
+use near_primitives::delegate_action::DelegateAction;
 use near_primitives::{
     serialize::{from_base64, to_base64},
     transaction::{
@@ -34,9 +35,11 @@ use near_primitives::{
         SignedTransaction as SignedTransactionOriginal, StakeAction as StakeActionOriginal,
         Transaction as TransactionOriginal, TransferAction as TransferActionOriginal,
     },
+    delegate_action::SignedDelegateAction as SignedDelegateActionOriginal,
     types::Gas,
 };
-use near_primitives_core::profile::ProfileData as ProfileDataOriginal;
+use near_primitives_core::profile::ProfileDataV2 as ProfileDataOriginalV2;
+use near_primitives_core::profile::ProfileDataV3 as ProfileDataOriginalV3;
 
 use crate::{
     account::AccessKey,
@@ -278,8 +281,6 @@ impl_display!(Transaction);
 quick_struct_boilerplate_core!(Transaction);
 
 #[derive(
-    BorshSerialize,
-    BorshDeserialize,
     Serialize,
     Deserialize,
     PartialEq,
@@ -299,6 +300,7 @@ pub enum Action {
     AddKey(AddKeyAction),
     DeleteKey(DeleteKeyAction),
     DeleteAccount(DeleteAccountAction),
+    SignedDelegate(SignedDelegateActionOriginal),
 }
 
 impl From<ActionOriginal> for Action {
@@ -312,6 +314,7 @@ impl From<ActionOriginal> for Action {
             ActionOriginal::AddKey(x) => Self::AddKey(x.into()),
             ActionOriginal::DeleteKey(x) => Self::DeleteKey(x.into()),
             ActionOriginal::DeleteAccount(x) => Self::DeleteAccount(x.into()),
+            ActionOriginal::Delegate(x) => Self::SignedDelegate(x.into()),
         }
     }
 }
@@ -327,6 +330,7 @@ impl From<Action> for ActionOriginal {
             Action::AddKey(x) => Self::AddKey(x.into()),
             Action::DeleteKey(x) => Self::DeleteKey(x.into()),
             Action::DeleteAccount(x) => Self::DeleteAccount(x.into()),
+            ActionOriginal::Delegate(x) => Self::SignedDelegate(x.into()),
         }
     }
 }
@@ -445,6 +449,37 @@ impl TransferAction {
     #[getter]
     pub fn deposit(&self) -> Balance {
         self.0.deposit
+    }
+}
+
+action_struct!(SignedDelegate, SignedDelegateActionOriginal, "");
+
+#[richcmp_eq_only]
+#[common_methods]
+#[pymethods]
+impl SignedDelegate {
+    #[new]
+    pub fn new(delegate_action: DelegateAction, signature: Signature) -> Self {
+        SignedDelegateActionOriginal { delegate_action, signature }.into()
+    }
+
+
+     #[getter]
+     pub fn delegate_action(&self) -> DelegateAction {
+         self.0.delegate_action.clone().into()
+     }
+ 
+     #[getter]
+     pub fn signature(&self) -> Signature {
+         self.0.signature.clone().into()
+     }
+
+     pub fn verify(&self) -> bool {
+        let delegate_action = &self.0.delegate_action;
+        let hash = delegate_action.get_nep461_hash();
+        let public_key = &delegate_action.public_key;
+
+        self.0.signature.verify(hash.as_ref(), public_key)
     }
 }
 
@@ -735,6 +770,7 @@ impl ExecutionOutcome {
         logs: Vec<LogEntry>,
         receipt_ids: Vec<CryptoHash>,
         gas_burnt: Gas,
+        compute_usage: Option<Compute>,
         tokens_burnt: Balance,
         executor_id: AccountId,
         status: ExecutionStatus,
@@ -745,6 +781,7 @@ impl ExecutionOutcome {
             receipt_ids: receipt_ids.into_iter().map(|x| x.into()).collect(),
             gas_burnt,
             tokens_burnt,
+            compute_usage,
             executor_id: executor_id.into(),
             status: status.into(),
             metadata: metadata.into(),
@@ -811,7 +848,7 @@ hash_enum!(ExecutionMetadataFieldless);
 /// Profile of gas consumption.
 #[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone, Default, From, Into)]
 #[pyclass(module = "pyonear.transasction", subclass)]
-pub struct ProfileData(pub ProfileDataOriginal);
+pub struct ProfileData(pub ProfileDataOriginalV2);
 
 #[richcmp_eq_only]
 #[common_methods_core]
@@ -819,7 +856,7 @@ pub struct ProfileData(pub ProfileDataOriginal);
 impl ProfileData {
     #[new]
     pub fn new() -> Self {
-        ProfileDataOriginal::new().into()
+        ProfileDataOriginalV2::new().into()
     }
 
     /// Args:
@@ -894,13 +931,13 @@ impl ProfileData {
         self.0.get_ext_cost(ext.into())
     }
 
-    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas
-    ///
-    /// Returns:
-    ///     int
-    pub fn host_gas(&self) -> u64 {
-        self.0.host_gas()
-    }
+    // /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas
+    // ///
+    // /// Returns:
+    // ///     int
+    // pub fn host_gas(&self) -> u64 {
+    //     self.0.host_gas()
+    // }
 
     /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas
     ///
@@ -922,6 +959,7 @@ quick_struct_boilerplate_core_no_json!(ProfileData);
 pub enum ExecutionMetadata {
     Fieldless(ExecutionMetadataFieldless),
     V2(ProfileData),
+    V3(ProfileDataV3),
 }
 
 impl From<ExecutionMetadata> for ExecutionMetadataOriginal {
@@ -932,6 +970,7 @@ impl From<ExecutionMetadata> for ExecutionMetadataOriginal {
                 ExecutionMetadataFieldless::V1 => Self::V1,
             },
             M::V2(x) => Self::V2(x.into()),
+            M::V3(x) => Self::V3(x.into()),
         }
     }
 }
@@ -942,6 +981,7 @@ impl From<ExecutionMetadataOriginal> for ExecutionMetadata {
         match m {
             M::V1 => Self::Fieldless(ExecutionMetadataFieldless::V1),
             M::V2(x) => Self::V2(x.into()),
+            M::V3(x) => Self::V3(x.into()),
         }
     }
 }

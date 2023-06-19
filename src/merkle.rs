@@ -1,13 +1,12 @@
 use crate::{crypto_hash::CryptoHash, hash_enum, quick_struct_boilerplate_core};
-use borsh::{BorshDeserialize, BorshSerialize};
-use derive_more::{From, Into};
 use near_primitives::merkle::{
     Direction as DirectionOriginal, MerklePathItem as MerklePathItemOriginal,
 };
 use pyo3::prelude::*;
-use serde::{Deserialize, Serialize};
 use solders_macros::{common_methods, enum_original_mapping, richcmp_eq_only};
 use solders_traits::impl_display;
+use borsh::{BorshDeserialize, BorshSerialize};
+use serde::{Deserialize, Serialize};
 
 #[pyclass(module = "pyonear.merkle")]
 #[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -18,20 +17,11 @@ pub enum Direction {
 }
 hash_enum!(Direction);
 
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    BorshSerialize,
-    BorshDeserialize,
-    Serialize,
-    Deserialize,
-    From,
-    Into,
-)]
+
 #[pyclass(module = "pyonear.merkle", subclass)]
+#[derive(PartialEq, Clone, Debug, BorshDeserialize, BorshSerialize, serde::Deserialize, serde::Serialize)]
 pub struct MerklePathItem(pub MerklePathItemOriginal);
+
 
 #[richcmp_eq_only]
 #[common_methods]

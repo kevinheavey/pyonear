@@ -25,7 +25,7 @@ build-backend = "maturin"
 
 [project]
 name = "pyonear"
-version = "0.2.0"
+version = "0.2.1"
 description = "Python bindings for NEAR Rust primitives."
 authors = [ {name = "kevinheavey", email = "notanemail@gmail.com"} ]
 license = {file = "LICENSE"} # relative to the package/ directory
