@@ -223,9 +223,6 @@ impl From<CompilationErrorOriginal> for CompilationError {
             }),
             E::PrepareError(x) => Self::PrepareError(x.into()),
             E::WasmerCompileError { msg } => Self::WasmerCompileError(WasmerCompileError { msg }),
-            E::UnsupportedCompiler { msg } => {
-                Self::UnsupportedCompiler(UnsupportedCompiler { msg })
-            }
         }
     }
 }

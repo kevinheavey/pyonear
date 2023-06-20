@@ -621,7 +621,7 @@ impl SignedTransaction {
     /// Returns:
     ///     str
     pub fn to_base64(&self) -> String {
-        to_base64(self.0.try_to_vec().unwrap())
+        to_base64(&self.0.try_to_vec().unwrap())
     }
 
     #[staticmethod]
