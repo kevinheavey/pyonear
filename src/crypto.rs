@@ -2,7 +2,7 @@ use std::{
     array::TryFromSliceError,
     fmt::{Debug, Display},
     hash::{Hash, Hasher},
-    io::{Error, Write},
+    io::{Error, Write, Read},
     path::PathBuf,
     str::FromStr,
 };
@@ -174,8 +174,8 @@ impl BorshSerialize for PublicKey {
 }
 
 impl BorshDeserialize for PublicKey {
-    fn deserialize(buf: &mut &[u8]) -> Result<Self, Error> {
-        let underlying: near_crypto::PublicKey = BorshDeserialize::deserialize(buf)?;
+    fn deserialize_reader<R: Read>(reader: &mut R) -> Result<Self, Error> {
+        let underlying: near_crypto::PublicKey = BorshDeserialize::deserialize_reader(reader)?;
         Ok(underlying.into())
     }
 }
