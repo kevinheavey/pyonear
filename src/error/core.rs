@@ -66,6 +66,13 @@ macro_rules! quick_struct_core_account_id_string {
     };
 }
 
+#[pyclass(module = "pyonear.error")]
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq, Hash)]
+pub enum ActionErrorKindFieldless {
+    DelegateActionInvalidSignature,
+    DelegateActionExpired,
+}
+
 #[derive(Debug, Clone, PartialEq, Eq, FromPyObject, EnumIntoPy)]
 pub enum ActionErrorKind {
     AccountAlreadyExists(AccountAlreadyExists),
@@ -84,6 +91,10 @@ pub enum ActionErrorKind {
     NewReceiptValidationError(ReceiptValidationError),
     OnlyImplicitAccountCreationAllowed(OnlyImplicitAccountCreationAllowed),
     DeleteAccountWithLargeState(DeleteAccountWithLargeState),
+    DelegateActionSenderDoesNotMatchTxReceiver(DelegateActionSenderDoesNotMatchTxReceiver),
+    DelegateActionInvalidNonce(DelegateActionInvalidNonce),
+    DelegateActionNonceTooLarge(DelegateActionNonceTooLarge),
+    Fieldless(ActionErrorKindFieldless)
 }
 
 impl From<ActionErrorKindOriginal> for ActionErrorKind {
@@ -183,6 +194,11 @@ impl From<ActionErrorKindOriginal> for ActionErrorKind {
                     account_id: account_id.into(),
                 })
             }
+            E::DelegateActionSenderDoesNotMatchTxReceiver { sender_id, receiver_id } => Self::DelegateActionSenderDoesNotMatchTxReceiver(DelegateActionSenderDoesNotMatchTxReceiver { sender_id: sender_id.into(), receiver_id: receiver_id.into() }),
+            E::DelegateActionInvalidNonce { delegate_nonce, ak_nonce } => Self::DelegateActionInvalidNonce(DelegateActionInvalidNonce { delegate_nonce, ak_nonce }),
+            E::DelegateActionNonceTooLarge { delegate_nonce, upper_bound } => Self::DelegateActionNonceTooLarge(DelegateActionNonceTooLarge { delegate_nonce, upper_bound }),
+            E::DelegateActionInvalidSignature => Self::Fieldless(ActionErrorKindFieldless::DelegateActionInvalidSignature),
+            E::DelegateActionExpired => Self::Fieldless(ActionErrorKindFieldless::DelegateActionExpired)
         }
     }
 }
@@ -247,6 +263,13 @@ impl From<ActionErrorKind> for ActionErrorKindOriginal {
             E::DeleteAccountWithLargeState(x) => Self::DeleteAccountWithLargeState {
                 account_id: x.account_id.into(),
             },
+            E::DelegateActionInvalidNonce(x) => Self::DelegateActionInvalidNonce { delegate_nonce: x.delegate_nonce, ak_nonce: x.ak_nonce },
+            E::DelegateActionNonceTooLarge(x) => Self::DelegateActionNonceTooLarge { delegate_nonce: x.delegate_nonce, upper_bound: x.upper_bound },
+            E::DelegateActionSenderDoesNotMatchTxReceiver(x) => Self::DelegateActionSenderDoesNotMatchTxReceiver { sender_id: x.sender_id.into(), receiver_id: x.receiver_id.into() },
+            E::Fieldless(f) => match f {
+                ActionErrorKindFieldless::DelegateActionInvalidSignature => Self::DelegateActionInvalidSignature,
+                ActionErrorKindFieldless::DelegateActionExpired => Self::DelegateActionExpired
+            }
         }
     }
 }
@@ -346,6 +369,24 @@ quick_struct_core_account_id!(
 quick_struct_core_account_id!(
     TriesToUnstake,
     "Account is not yet staked, but tries to unstake"
+);
+quick_struct_core!(
+    DelegateActionSenderDoesNotMatchTxReceiver,
+    "Receiver of the transaction doesn't match Sender of the delegate action",
+    sender_id: AccountId,
+    receiver_id: AccountId
+);
+quick_struct_core!(
+    DelegateActionInvalidNonce,
+    "DelegateAction nonce must be greater sender[public_key].nonce",
+    delegate_nonce: Nonce,
+    ak_nonce: Nonce
+);
+quick_struct_core!(
+    DelegateActionNonceTooLarge,
+    "DelegateAction nonce is larger than the upper bound given by the block height",
+    delegate_nonce: Nonce,
+    upper_bound: Nonce
 );
 
 #[derive(Debug, Clone, PartialEq, Eq, FromPyObject, EnumIntoPy)]
@@ -807,6 +848,8 @@ pub enum ActionsValidationErrorFieldless {
     IntegerOverflow,
     /// The attached amount of gas in a FunctionCall action has to be a positive number.
     FunctionCallZeroAttachedGas,
+    /// There should be the only one DelegateAction
+    DelegateActionMustBeOnlyOne
 }
 hash_enum!(ActionsValidationErrorFieldless);
 
@@ -822,6 +865,7 @@ pub enum ActionsValidationError {
     FunctionCallMethodNameLengthExceeded(FunctionCallMethodNameLengthExceeded),
     FunctionCallArgumentsLengthExceeded(FunctionCallArgumentsLengthExceeded),
     UnsuitableStakingKey(UnsuitableStakingKey),
+    UnsupportedProtocolFeature(UnsupportedProtocolFeature)
 }
 quick_struct_core!(
     TotalPrepaidGasExceeded,
@@ -865,6 +909,12 @@ quick_struct_core!(
     "An attempt to stake with a public key that is not convertible to ristretto.",
     public_key: PublicKey
 );
+quick_struct_core!(
+    UnsupportedProtocolFeature,
+    "The transaction includes a feature that the current protocol version does not support.",
+    protocol_feature: String,
+    version: u32
+);
 
 impl From<ActionsValidationError> for ActionsValidationErrorOriginal {
     fn from(e: ActionsValidationError) -> Self {
@@ -875,6 +925,7 @@ impl From<ActionsValidationError> for ActionsValidationErrorOriginal {
                 F::DeleteActionMustBeFinal => Self::DeleteActionMustBeFinal,
                 F::FunctionCallZeroAttachedGas => Self::FunctionCallZeroAttachedGas,
                 F::IntegerOverflow => Self::IntegerOverflow,
+                F::DelegateActionMustBeOnlyOne => Self::DelegateActionMustBeOnlyOne,
             },
             E::TotalPrepaidGasExceeded(x) => Self::TotalPrepaidGasExceeded {
                 limit: x.limit,
@@ -916,6 +967,7 @@ impl From<ActionsValidationError> for ActionsValidationErrorOriginal {
             E::UnsuitableStakingKey(x) => Self::UnsuitableStakingKey {
                 public_key: x.public_key.into(),
             },
+            E::UnsupportedProtocolFeature(x) => Self::UnsupportedProtocolFeature { protocol_feature: x.protocol_feature, version: x.version }
         }
     }
 }
@@ -980,6 +1032,8 @@ impl From<ActionsValidationErrorOriginal> for ActionsValidationError {
                     public_key: public_key.into(),
                 })
             }
+            E::DelegateActionMustBeOnlyOne => Self::Fieldless(ActionsValidationErrorFieldless::DelegateActionMustBeOnlyOne),
+            E::UnsupportedProtocolFeature { protocol_feature, version } => Self::UnsupportedProtocolFeature(UnsupportedProtocolFeature { protocol_feature, version })
         }
     }
 }

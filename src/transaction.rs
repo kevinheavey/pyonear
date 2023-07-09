@@ -36,12 +36,12 @@ use near_primitives::{
     },
     types::Gas,
 };
-use near_primitives_core::profile::ProfileData as ProfileDataOriginal;
+use near_primitives_core::{profile::{ProfileDataV2 as ProfileDataV2Original, ProfileDataV3 as ProfileDataV3Original}, types::Compute};
 
 use crate::{
     account::AccessKey,
     account_id::AccountId,
-    config::{ActionCosts, ExtCosts},
+    config::{ExtCosts, ActionCosts},
     crypto::{PublicKey, Signature, Signer},
     crypto_hash::CryptoHash,
     error::{core::get_tx_execution_error_members, exception::handle_py_value_err},
@@ -739,11 +739,13 @@ impl ExecutionOutcome {
         executor_id: AccountId,
         status: ExecutionStatus,
         metadata: ExecutionMetadata,
+        compute_usage: Option<Compute>,
     ) -> Self {
         ExecutionOutcomeOriginal {
             logs,
             receipt_ids: receipt_ids.into_iter().map(|x| x.into()).collect(),
             gas_burnt,
+            compute_usage,
             tokens_burnt,
             executor_id: executor_id.into(),
             status: status.into(),
@@ -811,23 +813,95 @@ hash_enum!(ExecutionMetadataFieldless);
 /// Profile of gas consumption.
 #[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone, Default, From, Into)]
 #[pyclass(module = "pyonear.transasction", subclass)]
-pub struct ProfileData(pub ProfileDataOriginal);
+pub struct ProfileDataV2(pub ProfileDataV2Original);
 
 #[richcmp_eq_only]
 #[common_methods_core]
 #[pymethods]
-impl ProfileData {
+impl ProfileDataV2 {
+    pub fn get_wasm_cost(&self) -> u64 {
+        // ProfileV2Cost::WasmInstruction => 62,
+        self.0.get_wasm_cost()
+    }
+
+    /// List action cost in the old way, which conflated several action parameters into one.
+    ///
+    /// This is used to display old gas profiles on the RPC API and in debug output.
+    pub fn legacy_action_costs(&self) -> Vec<(&'static str, Gas)> {
+        self.0.legacy_action_costs()
+    }
+
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost
+    ///
+    /// Args:
+    ///     ext (ExtCosts)
+    ///
+    /// Returns:
+    ///     int
+    pub fn get_ext_cost(&self, ext: ExtCosts) -> u64 {
+        self.0.get_ext_cost(ext.into())
+    }
+
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas
+    ///
+    /// Returns:
+    ///     int
+    pub fn action_gas(&self) -> u64 {
+        self.0.action_gas()
+    }
+}
+
+impl std::fmt::Display for ProfileDataV2 {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+quick_struct_boilerplate_core_no_json!(ProfileDataV2);
+
+/// Profile of gas consumption.
+#[derive(BorshSerialize, BorshDeserialize, PartialEq, Eq, Debug, Clone, Default, From, Into)]
+#[pyclass(module = "pyonear.transasction", subclass)]
+pub struct ProfileDataV3(pub ProfileDataV3Original);
+
+#[richcmp_eq_only]
+#[common_methods_core]
+#[pymethods]
+impl ProfileDataV3 {
     #[new]
     pub fn new() -> Self {
-        ProfileDataOriginal::new().into()
+        ProfileDataV3Original::new().into()
+    }
+
+    pub fn get_wasm_cost(&self) -> u64 {
+        // ProfileV3Cost::WasmInstruction => 62,
+        self.0.get_wasm_cost()
+    }
+
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost
+    ///
+    /// Args:
+    ///     ext (ExtCosts)
+    ///
+    /// Returns:
+    ///     int
+    pub fn get_ext_cost(&self, ext: ExtCosts) -> u64 {
+        self.0.get_ext_cost(ext.into())
+    }
+
+    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas
+    ///
+    /// Returns:
+    ///     int
+    pub fn action_gas(&self) -> u64 {
+        self.0.action_gas()
     }
 
     /// Args:
-    ///     other (ProfileData)
+    ///     other (ProfileDataV3)
     ///
     /// Returns:
     ///     None
-    pub fn merge(&mut self, other: &ProfileData) {
+    pub fn merge(&mut self, other: &ProfileDataV3) {
         self.0.merge(&other.0)
     }
 
@@ -882,46 +956,20 @@ impl ProfileData {
     pub fn get_action_cost(&self, action: ActionCosts) -> u64 {
         self.0.get_action_cost(action.into())
     }
-
-    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.get_ext_cost
-    ///
-    /// Args:
-    ///     ext (ExtCosts)
-    ///
-    /// Returns:
-    ///     int
-    pub fn get_ext_cost(&self, ext: ExtCosts) -> u64 {
-        self.0.get_ext_cost(ext.into())
-    }
-
-    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.host_gas
-    ///
-    /// Returns:
-    ///     int
-    pub fn host_gas(&self) -> u64 {
-        self.0.host_gas()
-    }
-
-    /// See https://docs.rs/near-primitives-core/latest/near_primitives_core/profile/struct.ProfileData.html#method.action_gas
-    ///
-    /// Returns:
-    ///     int
-    pub fn action_gas(&self) -> u64 {
-        self.0.action_gas()
-    }
 }
 
-impl std::fmt::Display for ProfileData {
+impl std::fmt::Display for ProfileDataV3 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{:?}", self)
     }
 }
-quick_struct_boilerplate_core_no_json!(ProfileData);
+quick_struct_boilerplate_core_no_json!(ProfileDataV3);
 
 #[derive(PartialEq, Clone, Eq, Debug, FromPyObject, EnumIntoPy)]
 pub enum ExecutionMetadata {
     Fieldless(ExecutionMetadataFieldless),
-    V2(ProfileData),
+    V2(ProfileDataV2),
+    V3(ProfileDataV3),
 }
 
 impl From<ExecutionMetadata> for ExecutionMetadataOriginal {
@@ -932,6 +980,7 @@ impl From<ExecutionMetadata> for ExecutionMetadataOriginal {
                 ExecutionMetadataFieldless::V1 => Self::V1,
             },
             M::V2(x) => Self::V2(x.into()),
+            M::V3(x) => Self::V3(x.into()),
         }
     }
 }
@@ -942,6 +991,7 @@ impl From<ExecutionMetadataOriginal> for ExecutionMetadata {
         match m {
             M::V1 => Self::Fieldless(ExecutionMetadataFieldless::V1),
             M::V2(x) => Self::V2(x.into()),
+            M::V3(x) => Self::V3(x.into()),
         }
     }
 }
@@ -1112,13 +1162,14 @@ pub(crate) fn create_transaction_mod(py: Python<'_>) -> PyResult<&PyModule> {
             ],
         ))?,
     )?;
-    add_classes!(m, ExecutionMetadataFieldless, ProfileData);
+    add_classes!(m, ExecutionMetadataFieldless, ProfileDataV2, ProfileDataV3);
     add_union!(
         "ExecutionMetadata",
         m,
         py,
         ExecutionMetadataFieldless,
-        ProfileData
+        ProfileDataV2,
+        ProfileDataV3
     )?;
     add_classes!(
         m,

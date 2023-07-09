@@ -126,24 +126,24 @@ pub enum CacheError {
     SerializationError(SerializationError),
 }
 
-impl From<CacheError> for CacheErrorOriginal {
-    fn from(e: CacheError) -> Self {
-        match e {
-            CacheError::Fieldless(f) => match f {
-                CacheErrorFieldless::ReadError => Self::ReadError,
-                CacheErrorFieldless::WriteError => Self::WriteError,
-                CacheErrorFieldless::DeserializationError => Self::DeserializationError,
-            },
-            CacheError::SerializationError(s) => Self::SerializationError { hash: s.hash },
-        }
-    }
-}
+// impl From<CacheError> for CacheErrorOriginal {
+//     fn from(e: CacheError) -> Self {
+//         match e {
+//             CacheError::Fieldless(f) => match f {
+//                 CacheErrorFieldless::ReadError => Self::ReadError,
+//                 CacheErrorFieldless::WriteError => Self::WriteError,
+//                 CacheErrorFieldless::DeserializationError => Self::DeserializationError,
+//             },
+//             CacheError::SerializationError(s) => Self::SerializationError { hash: s.hash },
+//         }
+//     }
+// }
 
 impl From<CacheErrorOriginal> for CacheError {
     fn from(e: CacheErrorOriginal) -> Self {
         match e {
-            CacheErrorOriginal::ReadError => Self::Fieldless(CacheErrorFieldless::ReadError),
-            CacheErrorOriginal::WriteError => Self::Fieldless(CacheErrorFieldless::WriteError),
+            CacheErrorOriginal::ReadError(_) => Self::Fieldless(CacheErrorFieldless::ReadError),
+            CacheErrorOriginal::WriteError(_) => Self::Fieldless(CacheErrorFieldless::WriteError),
             CacheErrorOriginal::DeserializationError => {
                 Self::Fieldless(CacheErrorFieldless::DeserializationError)
             }
@@ -197,7 +197,6 @@ pub enum CompilationError {
     CodeDoesNotExist(CodeDoesNotExist),
     PrepareError(PrepareError),
     WasmerCompileError(WasmerCompileError),
-    UnsupportedCompiler(UnsupportedCompiler),
 }
 
 impl From<CompilationError> for CompilationErrorOriginal {
@@ -209,7 +208,6 @@ impl From<CompilationError> for CompilationErrorOriginal {
             },
             E::PrepareError(x) => Self::PrepareError(x.into()),
             E::WasmerCompileError(x) => Self::WasmerCompileError { msg: x.msg },
-            E::UnsupportedCompiler(x) => Self::UnsupportedCompiler { msg: x.msg },
         }
     }
 }
